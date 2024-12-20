@@ -6,9 +6,10 @@ import hmac
 import os
 import uuid
 import base64
+import requests
 from dotenv import load_dotenv
 
-def generate_jwt_token():
+def generate_token():
     """
     Docs: https://emr.sunwavehealth.com/SunwaveEMR/swagger/
     """
@@ -23,23 +24,22 @@ def generate_jwt_token():
     unique_transaction_id = str(uuid.uuid4())
 
     seed = f"{user_id}:{client_id}:{dateTimeBase64}:{clinic_id}:{unique_transaction_id}"
-    hmac_token = hmac.new(
-        key=client_secret.encode(),
-        msg=seed.encode(),
-        digestmod=hashlib.sha256
-    ).hexdigest()
 
     jwt_token = jwt.encode(
         payload={
-            "seed": seed
+            seed: client_secret
         },
-        key=client_secret,
+        key=seed,
         algorithm="HS256"
     )
     
-    return (f"{seed}:{hmac_token}", f"{seed}:{jwt_token}")
+    return f"{jwt_token}"
 
 if __name__ == "__main__":
-    hmac_token, jwt_token = generate_jwt_token()
-    with open(".secrets/token_out.txt", "w") as file:
-        file.write(f"HMAC TOKEN:\n{hmac_token}\n\nJWT TOKEN:\n{jwt_token}")
+
+    url_base = "https://emr.sunwavehealth.com/SunwaveEMR"
+    url_path = "/api/users"
+    response = requests.get(url_base + url_path, headers={"Authorization": f"Digest {generate_token()}"})
+    print(response.json())
+    print(response.status_code) # 200's when token is invalid {'error': 'invalid token'} in respons
+    print(response.headers)
