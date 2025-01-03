@@ -14,42 +14,30 @@ class TapSunwave(Tap):
 
     name = "tap-sunwave"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth_token",
+            "user_id",
             th.StringType,
             required=True,
-            secret=True,  # Flag config as protected.
-            title="Auth Token",
-            description="The token to authenticate against the API service",
+            description="Email address of the user to authenticate with.",
         ),
         th.Property(
-            "project_ids",
-            th.ArrayType(th.StringType),
+            "client_id",
+            th.StringType,
             required=True,
-            title="Project IDs",
-            description="Project IDs to replicate",
+            description="Client ID, obtained from Sunwave support staff.",
         ),
         th.Property(
-            "start_date",
-            th.DateTimeType,
-            description="The earliest record date to sync",
-        ),
-        th.Property(
-            "api_url",
+            "client_secret",
             th.StringType,
-            title="API URL",
-            default="https://api.mysample.com",
-            description="The url for the API service",
+            required=True,
+            description="Client secret, obtained from Sunwave support staff.",
         ),
         th.Property(
-            "user_agent",
+            "clinic_id",
             th.StringType,
-            description=(
-                "A custom User-Agent header to send with each request. Default is "
-                "'<tap_name>/<tap_version>'"
-            ),
+            required=True,
+            description="Clinic ID, obtained by inspecting requests in the browser.",
         ),
     ).to_dict()
 
@@ -60,8 +48,7 @@ class TapSunwave(Tap):
             A list of discovered streams.
         """
         return [
-            streams.GroupsStream(self),
-            streams.UsersStream(self),
+            streams.UserStream(self),
         ]
 
 

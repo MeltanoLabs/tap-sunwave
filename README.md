@@ -4,26 +4,6 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
-<!--
-
-Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
-
-## Installation
-
-Install from PyPi:
-
-```bash
-pipx install tap-sunwave
-```
-
-Install from GitHub:
-
-```bash
-pipx install git+https://github.com/ORG_NAME/tap-sunwave.git@main
-```
-
--->
-
 ## Configuration
 
 ### Accepted Config Options
@@ -71,6 +51,12 @@ tap-sunwave --config CONFIG --discover > ./catalog.json
 
 ## Developer Resources
 
+### Swagger Schema
+
+Here's where schemas are sourced from: https://emr.sunwavehealth.com/SunwaveEMR/swagger/swagger.json
+
+### Contributing
+
 Follow these instructions to contribute to this project.
 
 ### Initialize your Development Environment
@@ -99,12 +85,6 @@ poetry run tap-sunwave --help
 
 _**Note:** This tap will work in any Singer environment and does not require Meltano.
 Examples here are for convenience and to streamline end-to-end orchestration scenarios._
-
-<!--
-Developer TODO:
-Your project comes with a custom `meltano.yml` project file already created. Open the `meltano.yml` and follow any "TODO" items listed in
-the file.
--->
 
 Next, install Meltano (if you haven't already) and any needed plugins:
 
