@@ -5,8 +5,6 @@ from __future__ import annotations
 import typing as t
 from importlib import resources
 
-from singer_sdk import typing as th  # JSON Schema typing helpers
-
 from tap_sunwave.client import SunwaveStream
 
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
