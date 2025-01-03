@@ -2,43 +2,62 @@
 
 from __future__ import annotations
 
-from singer_sdk.authenticators import OAuthAuthenticator, SingletonMeta
+import base64
+import hashlib
+import hmac
+import typing as t
+import uuid
+from datetime import datetime, timezone
+
+from singer_sdk.authenticators import APIAuthenticatorBase, SingletonMeta
+
+if t.TYPE_CHECKING:
+    import requests
+
+    from tap_sunwave.client import SunwaveStream
 
 
-# The SingletonMeta metaclass makes your streams reuse the same authenticator instance.
-# If this behaviour interferes with your use-case, you can remove the metaclass.
-class SunwaveAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
+class SunwaveAuthenticator(APIAuthenticatorBase, metaclass=SingletonMeta):
     """Authenticator class for Sunwave."""
 
-    @property
-    def oauth_request_body(self) -> dict:
-        """Define the OAuth request body for the AutomaticTestTap API.
+    def authenticate_request(
+        self,
+        request: requests.PreparedRequest,
+    ) -> requests.PreparedRequest:
 
-        Returns:
-            A dict with the request body
-        """
-        # TODO: Define the request body needed for the API.
-        return {
-            "resource": "https://analysis.windows.net/powerbi/api",
-            "scope": self.oauth_scopes,
-            "client_id": self.config["client_id"],
-            "username": self.config["username"],
-            "password": self.config["password"],
-            "grant_type": "password",
-        }
+        request_body = request.body if request.body else ""
+
+        date_calc = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
+        datetime_base_64 = base64.b64encode(date_calc.encode("utf-8")).decode("utf-8")
+        unique_transaction_id = str(uuid.uuid4())
+
+        # For GET requests this isn't needed, but an empty string md5'd works
+        md5_payload = hashlib.md5(  # noqa: S324
+            request_body.encode("utf-8")
+        ).hexdigest()
+        base64_md5_payload_bytes = base64.b64encode(md5_payload.encode("utf-8"))
+        base64_md5_payload = (
+            base64_md5_payload_bytes.decode("utf-8").replace("/", "_").replace("+", "-")
+        )
+
+        seed_string = (
+            f"{self.config['user_id']}:{self.config['client_id']}:{datetime_base_64}:"
+            f"{self.config['clinic_id']}:{unique_transaction_id}:{base64_md5_payload}"
+        )
+        seed_bytes = seed_string.encode("utf-8")
+
+        hmac_digest = hmac.new(
+            self.config["client_secret"].encode("utf-8"), seed_bytes, hashlib.sha512
+        ).digest()
+        hmac_base64_bytes = base64.b64encode(hmac_digest)
+        hmac_base64 = (
+            hmac_base64_bytes.decode("utf-8").replace("/", "_").replace("+", "-")
+        )
+
+        request.headers.update({"Authorization": f"Digest {seed_string}:{hmac_base64}"})
+
+        return request
 
     @classmethod
-    def create_for_stream(cls, stream) -> SunwaveAuthenticator:  # noqa: ANN001
-        """Instantiate an authenticator for a specific Singer stream.
-
-        Args:
-            stream: The Singer stream instance.
-
-        Returns:
-            A new authenticator.
-        """
-        return cls(
-            stream=stream,
-            auth_endpoint="TODO: OAuth Endpoint URL",
-            oauth_scopes="TODO: OAuth Scopes",
-        )
+    def create_for_stream(cls, stream: SunwaveStream) -> SunwaveAuthenticator:
+        return cls(stream=stream)
