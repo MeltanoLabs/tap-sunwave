@@ -17,3 +17,11 @@ class UserStream(SunwaveStream):
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
     schema_filepath = SCHEMAS_DIR / f"{name}.json"
+
+class ReferralStream(SunwaveStream):
+
+    name = "referral"
+    path = "/api/referrals/status/{status}"
+    primary_keys: t.ClassVar[list[str]] = ["id"]
+    replication_key = None
+    schema_filepath = SCHEMAS_DIR / f"{name}.json"
