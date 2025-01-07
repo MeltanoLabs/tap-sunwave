@@ -25,3 +25,21 @@ class ReferralStream(SunwaveStream):
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
     schema_filepath = SCHEMAS_DIR / f"{name}.json"
+    from tap_sunwave.client import SunwaveStream
+
+
+class FormsStream(SunwaveStream):
+    """Stream for retrieving forms data from Sunwave."""
+    
+    name = "form"
+    path = "/api/forms"
+    primary_keys = ["id"]  # Assuming forms have an ID field
+    replication_key = None  # Add if forms have a modified/created timestamp
+    
+    schema = {
+        "properties": {
+            "id": {"type": "string"},
+            "name": {"type": "string"},
+            "is_n_form": {"type": "string"},
+        }
+    }

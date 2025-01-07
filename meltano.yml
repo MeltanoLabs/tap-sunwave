@@ -15,15 +15,14 @@ plugins:
     - discover
     - about
     - stream-maps
-
-    # TODO: Declare settings and their types here:
     settings:
     - name: user_id
     - name: client_id
     - name: client_secret
       sensitive: true
     - name: clinic_id
-
+    select:
+    - "form.*"
   loaders:
   - name: target-jsonl
     variant: andyh1203

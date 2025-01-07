@@ -40,13 +40,14 @@ class TapSunwave(Tap):
         ),
     ).to_dict()
 
-    def discover_streams(self) -> list[streams.SunwaveStream]:
+    def discover_streams(self) -> list[Stream]:
         """Return a list of discovered streams.
 
         Returns:
             A list of discovered streams.
         """
         return [
+            streams.FormsStream(tap=self),
             streams.UserStream(self),
         ]
 
