@@ -1,0 +1,169 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Referral Id",
+            "example": "404"
+        },
+        "name": {
+            "type": "string",
+            "description": "Referral Source Name",
+            "example": "12 & 12 Inner Solutions Recovery Center"
+        },
+        "description": {
+            "type": "string",
+            "description": "Description",
+            "example": "Detox, Intensive, Outpatient"
+        },
+        "address": {
+            "type": "string",
+            "description": "Address",
+            "example": "679 Chandler Hollow Road"
+        },
+        "city": {
+            "type": "string",
+            "description": "City",
+            "example": "Bay Beach"
+        },
+        "state": {
+            "type": "string",
+            "description": "State",
+            "example": "GA"
+        },
+        "zip": {
+            "type": "string",
+            "description": "Zip",
+            "example": "33012"
+        },
+        "country_name": {
+            "type": "string",
+            "description": "ISO 3166 country name",
+            "example": "Canada"
+        },
+        "country_code": {
+            "type": "string",
+            "description": "ISO 3166 country three character code",
+            "example": "CAN"
+        },
+        "phone": {
+            "type": "string",
+            "description": "phone",
+            "example": "4124326408"
+        },
+        "preferred": {
+            "type": "string",
+            "description": "Preferred",
+            "example": "false"
+        },
+        "label": {
+            "type": "string",
+            "description": "Labels"
+        },
+        "status": {
+            "type": "string",
+            "description": "status",
+            "example": "Active"
+        },
+        "web_site": {
+            "type": "string",
+            "description": "web_site",
+            "example": "www.great-treatment.com"
+        },
+        "referral_type": {
+            "type": "string",
+            "description": "Referral type",
+            "example": "PHP"
+        },
+        "type_id": {
+            "type": "string",
+            "description": "Referral Type Id",
+            "example": "1"
+        },
+        "owner_name": {
+            "type": "string",
+            "description": "Owner's first name",
+            "example": "Michael"
+        },
+        "owner_last_name": {
+            "type": "string",
+            "description": "Owner's last name",
+            "example": "Bays"
+        },
+        "account_owner": {
+            "type": "string",
+            "description": "Account Owner Id",
+            "example": "708"
+        },
+        "owner_email": {
+            "type": "string",
+            "description": "ownerEmail",
+            "example": "michaelbays@gmail.com"
+        },
+        "primary_contact_name": {
+            "type": "string",
+            "description": "Primary Contact First Name",
+            "example": "Ariel"
+        },
+        "primary_contact_lastname": {
+            "type": "string",
+            "description": "Primary Contact Last Name",
+            "example": "Shockley"
+        },
+        "primary_contact": {
+            "type": "string",
+            "description": "Primary contact Id",
+            "example": "82"
+        },
+        "primary_contact_email": {
+            "type": "string",
+            "description": "Primary contact email",
+            "example": "SarahKAllman@armyspy.com"
+        },
+        "primary_contact_mobile": {
+            "type": "string",
+            "description": "Primary contact mobile phone",
+            "example": "2105522884"
+        },
+        "in_network": {
+            "type": "string",
+            "description": "In Network",
+            "example": "true"
+        },
+        "loc_op": {
+            "type": "string",
+            "description": "OP Level of care",
+            "example": "true"
+        },
+        "loc_iop": {
+            "type": "string",
+            "description": "IOP Level of care",
+            "example": "false"
+        },
+        "loc_day_or_night": {
+            "type": "string",
+            "description": "Day or Night level of care",
+            "example": "false"
+        },
+        "loc_detox": {
+            "type": "string",
+            "description": "Detox level of care",
+            "example": "true"
+        },
+        "loc_residencial": {
+            "type": "string",
+            "description": "Residential level of care",
+            "example": "true"
+        },
+        "created_on": {
+            "type": "string",
+            "description": "Date the referral was created"
+        },
+        "clinic_id": {
+            "type": "string",
+            "description": "Clinic Id",
+            "example": "152"
+        }
+    },
+    "description": "Referral Source response object"
+}

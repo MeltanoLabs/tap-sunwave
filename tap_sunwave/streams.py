@@ -4,63 +4,130 @@ from __future__ import annotations
 
 import typing as t
 from importlib import resources
-
-from singer_sdk import typing as th  # JSON Schema typing helpers
-
 from tap_sunwave.client import SunwaveStream
+from datetime import datetime
+import json
 
-# TODO: Delete this is if not using json files for schema definition
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
-# TODO: - Override `UsersStream` and `GroupsStream` with your own stream definition.
-#       - Copy-paste as many times as needed to create multiple stream types.
 
 
-class UsersStream(SunwaveStream):
-    """Define custom stream."""
+class UserStream(SunwaveStream):
 
-    name = "users"
-    path = "/users"
+    name = "user"
+    path = "/api/users"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
-    # Optionally, you may also use `schema_filepath` in place of `schema`:
-    # schema_filepath = SCHEMAS_DIR / "users.json"  # noqa: ERA001
-    schema = th.PropertiesList(
-        th.Property("name", th.StringType),
-        th.Property(
-            "id",
-            th.StringType,
-            description="The user's system ID",
-        ),
-        th.Property(
-            "age",
-            th.IntegerType,
-            description="The user's age in years",
-        ),
-        th.Property(
-            "email",
-            th.StringType,
-            description="The user's email address",
-        ),
-        th.Property("street", th.StringType),
-        th.Property("city", th.StringType),
-        th.Property(
-            "state",
-            th.StringType,
-            description="State name in ISO 3166-2 format",
-        ),
-        th.Property("zip", th.StringType),
-    ).to_dict()
+    schema_filepath = SCHEMAS_DIR / f"{name}.json"
 
+class ReferralStream(SunwaveStream):
 
-class GroupsStream(SunwaveStream):
-    """Define custom stream."""
-
-    name = "groups"
-    path = "/groups"
+    name = "referral"
+    path = "/api/referrals/status/{status}"
     primary_keys: t.ClassVar[list[str]] = ["id"]
-    replication_key = "modified"
-    schema = th.PropertiesList(
-        th.Property("name", th.StringType),
-        th.Property("id", th.StringType),
-        th.Property("modified", th.DateTimeType),
-    ).to_dict()
+    replication_key = None
+    schema_filepath = SCHEMAS_DIR / f"{name}.json"
+
+
+class FormsStream(SunwaveStream):
+    """Stream for retrieving forms data from Sunwave."""
+    
+    name = "form"
+    path = "/api/forms"
+    primary_keys = ["id"]
+    replication_key = None
+
+    @property
+    def schema(self):
+        """
+        Retrieve the schema for Forms directly from Swagger at:
+        #/components/schemas/FormStandardResponse
+        """
+        return self._get_swagger_schema("#/components/schemas/FormStandardResponse")
+    
+
+class OpportunitiesStream(SunwaveStream):
+    """
+    Stream for retrieving data about opportunities from Sunwave.
+    """
+    name = "opportunity"
+    primary_keys = ["id"]
+    replication_key = None
+    
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/Opportunities")
+   
+    @property
+    def path(self):
+        # Use strptime() instead of fromisoformat() for broader Python version support
+        start_date_str = self.config["start_date"]
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+        end_date = datetime.now()  # or datetime.today(), depending on your needs
+        return f"/api/opportunities/createdon/from/{start_date.strftime('%Y-%m-%d')}/until/{end_date.strftime('%Y-%m-%d')}"
+    
+    def get_child_context(self, record: dict, context: dict) -> dict:
+        if "opportunity_id" in record:
+            return {
+                "opportunity_id": record["opportunity_id"]
+            }
+        else:
+            return None
+
+class OpportunityTimelineStream(SunwaveStream):
+    """
+    Stream for retrieving data about opportunities from Sunwave.
+    """
+    name = "opportunity_timeline"
+    primary_keys = ["id"]
+    replication_key = None
+    parent_stream_type = OpportunitiesStream
+    path =  "/api/opportunities/{opportunity_id}/timeline"
+    
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/OpportunitiesTimeline")
+
+class CensusStream(SunwaveStream):
+    """
+    Stream for retrieving census data from Sunwave.
+    """
+    name = "census"
+    path = "/api/census"
+    partitions = [{"census_status":"active"}, {"census_status":"admitted"}, {"census_status":"discharged"}]
+    primary_keys = ["Account Id"]
+    replication_key = None
+
+    @property
+    def path(self):
+        start_date_str = self.config["start_date"]
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+        end_date = datetime.now()
+        return "/api/census/{census_status}/from/{start}/until/{end}".format(
+            census_status="{census_status}",
+            start=start_date.strftime('%Y-%m-%d'),
+            end=end_date.strftime('%Y-%m-%d')
+        )
+
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/Census")
+    
+    def get_child_context(self, record: dict, context: dict) -> dict:
+        return {
+            "account_id": record["Account Id"]
+        }
+
+class TimelineActivityStream(SunwaveStream):
+    """
+    Stream for retrieving timeline activity data from Sunwave.
+    """
+    name = "timeline_activity"
+    path = "/api/account/{account_id}/timeline"
+    primary_keys = ["id"]
+    replication_key = None
+    parent_stream_type = CensusStream
+
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/TimelineActivity")
+    

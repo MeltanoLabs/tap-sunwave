@@ -30,6 +30,8 @@ pyjwt = "~=2.10.0"
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8"
 singer-sdk = { version="~=0.43.1", extras = ["testing"] }
+black = "~=24.10.0"
+ruff = "~=0.8.5"
 
 [tool.poetry.extras]
 s3 = ["fs-s3fs"]
@@ -48,6 +50,7 @@ target-version = "py39"
 ignore = [
     "COM812",  # missing-trailing-comma
     "ISC001",  # single-line-implicit-string-concatenation
+    "D",
 ]
 select = ["ALL"]
 

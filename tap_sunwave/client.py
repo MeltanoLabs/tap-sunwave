@@ -2,143 +2,117 @@
 
 from __future__ import annotations
 
-import decimal
 import typing as t
+import requests
+import json
+from pathlib import Path
 from functools import cached_property
 from importlib import resources
 
-from singer_sdk.helpers.jsonpath import extract_jsonpath
-from singer_sdk.pagination import BaseAPIPaginator  # noqa: TC002
 from singer_sdk.streams import RESTStream
 
 from tap_sunwave.auth import SunwaveAuthenticator
+from http import HTTPStatus
+from urllib.parse import urlparse
 
 if t.TYPE_CHECKING:
-    import requests
-    from singer_sdk.helpers.types import Auth, Context
+    from singer_sdk.helpers.types import Auth
 
 
-# TODO: Delete this is if not using json files for schema definition
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
 
 class SunwaveStream(RESTStream):
     """Sunwave stream class."""
 
-    # Update this value if necessary or override `parse_response`.
-    records_jsonpath = "$[*]"
-
-    # Update this value if necessary or override `get_new_paginator`.
-    next_page_token_jsonpath = "$.next_page"  # noqa: S105
-
-    @property
-    def url_base(self) -> str:
-        """Return the API URL root, configurable via tap settings."""
-        # TODO: hardcode a value here, or retrieve it from self.config
-        return "https://api.mysample.com"
+    url_base = "https://emr.sunwavehealth.com/SunwaveEMR"
 
     @cached_property
     def authenticator(self) -> Auth:
-        """Return a new authenticator object.
-
-        Returns:
-            An authenticator instance.
-        """
         return SunwaveAuthenticator.create_for_stream(self)
 
-    @property
-    def http_headers(self) -> dict:
-        """Return the http headers needed.
+    def response_error_message(self, response: requests.Response) -> str:
+        """Build error message for invalid http statuses.
 
-        Returns:
-            A dictionary of HTTP headers.
-        """
-        return {}
-
-    def get_new_paginator(self) -> BaseAPIPaginator:
-        """Create a new pagination helper instance.
-
-        If the source API can make use of the `next_page_token_jsonpath`
-        attribute, or it contains a `X-Next-Page` header in the response
-        then you can remove this method.
-
-        If you need custom pagination that uses page numbers, "next" links, or
-        other approaches, please read the guide: https://sdk.meltano.com/en/v0.25.0/guides/pagination-classes.html.
-
-        Returns:
-            A pagination helper instance.
-        """
-        return super().get_new_paginator()
-
-    def get_url_params(
-        self,
-        context: Context | None,  # noqa: ARG002
-        next_page_token: t.Any | None,  # noqa: ANN401
-    ) -> dict[str, t.Any]:
-        """Return a dictionary of values to be used in URL parameterization.
+        WARNING - Override this method when the URL path may contain secrets or PII
 
         Args:
-            context: The stream context.
-            next_page_token: The next page index or value.
+            response: A :class:`requests.Response` object.
 
         Returns:
-            A dictionary of URL query parameters.
+            str: The error message
         """
-        params: dict = {}
-        if next_page_token:
-            params["page"] = next_page_token
-        if self.replication_key:
-            params["sort"] = "asc"
-            params["order_by"] = self.replication_key
-        return params
+        full_path = urlparse(response.url).path or self.path
+        error_type = (
+            "Client"
+            if HTTPStatus.BAD_REQUEST
+            <= response.status_code
+            < HTTPStatus.INTERNAL_SERVER_ERROR
+            else "Server"
+        )
 
-    def prepare_request_payload(
-        self,
-        context: Context | None,  # noqa: ARG002
-        next_page_token: t.Any | None,  # noqa: ARG002, ANN401
-    ) -> dict | None:
-        """Prepare the data payload for the REST API request.
-
-        By default, no payload will be sent (return None).
-
-        Args:
-            context: The stream context.
-            next_page_token: The next page index or value.
-
-        Returns:
-            A dictionary with the JSON body for a POST requests.
-        """
-        # TODO: Delete this method if no payload is required. (Most REST APIs.)
-        return None
+        return (
+            f"{response.status_code} {error_type} Error: "
+            f"{response.reason} for path: {full_path}. "
+            f"{response.text=} for path: {full_path}"
+        )
 
     def parse_response(self, response: requests.Response) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records.
 
         Args:
-            response: The HTTP ``requests.Response`` object.
+            response: A raw :class:`requests.Response`
 
         Yields:
-            Each record from the source.
+            One item for every item found in the response.
         """
-        # TODO: Parse response body and return a set of records.
-        yield from extract_jsonpath(
-            self.records_jsonpath,
-            input=response.json(parse_float=decimal.Decimal),
-        )
+        try:
+            yield from super().parse_response(response)
+        except requests.exceptions.JSONDecodeError as e:
+            # Their API returns a 200 status code when there's an error
+            # We detect that by noticing the response isn't valid JSON
+            self.logger.info(self.response_error_message(response))
+            raise e
 
-    def post_process(
-        self,
-        row: dict,
-        context: Context | None = None,  # noqa: ARG002
-    ) -> dict | None:
-        """As needed, append or transform raw data to match expected structure.
+    def _cleanup_schema(self, schema_fragment):
+        if isinstance(schema_fragment, dict):
+            # remove 'example' if present
+            schema_fragment.pop("example", None)
 
-        Args:
-            row: An individual record from the stream.
-            context: The stream context.
+            # if there's a 'type' and it's a string, make it ["null", type]
+            if "type" in schema_fragment and isinstance(schema_fragment["type"], list):
+                schema_fragment["type"].append("null")
+            if "type" in schema_fragment and isinstance(schema_fragment["type"], str):
+                schema_fragment["type"] = ["null", schema_fragment["type"]]
 
-        Returns:
-            The updated record dictionary, or ``None`` to skip the record.
+            # recursively process sub-objects
+            for value in schema_fragment.values():
+                self._cleanup_schema(value)
+
+        elif isinstance(schema_fragment, list):
+            for item in schema_fragment:
+                self._cleanup_schema(item)
+
+    def _get_swagger_schema(self, ref: str) -> dict:
         """
-        # TODO: Delete this method if not needed.
-        return row
+        Could be more efficient, but it works.
+        """
+
+        # Adjust the path to your swagger.json file as needed
+        swagger_path = Path("docs/swagger.json")
+
+        with open(swagger_path, "r", encoding="utf-8") as f:
+            swagger_doc = json.load(f)
+
+        # Example: ref => "#/components/schemas/FormStandardResponse"
+        # Strip the leading "#/" and split by "/"
+        path_parts = ref.lstrip("#/").split("/")
+
+        # Travserse the swagger doc to get the nested object
+        data = swagger_doc
+        for part in path_parts:
+            data = data[part]
+        
+        cleaned_schema = self._cleanup_schema(data["properties"])
+        assert len(data["properties"]) > 1, "No properties found in schema"
+        return data

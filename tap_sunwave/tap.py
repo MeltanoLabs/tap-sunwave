@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
+import datetime
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-# TODO: Import your custom stream types here:
 from tap_sunwave import streams
 
 
@@ -14,54 +14,53 @@ class TapSunwave(Tap):
 
     name = "tap-sunwave"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth_token",
+            "user_id",
             th.StringType,
             required=True,
-            secret=True,  # Flag config as protected.
-            title="Auth Token",
-            description="The token to authenticate against the API service",
+            description="Email address of the user to authenticate with.",
         ),
         th.Property(
-            "project_ids",
-            th.ArrayType(th.StringType),
+            "client_id",
+            th.StringType,
             required=True,
-            title="Project IDs",
-            description="Project IDs to replicate",
+            description="Client ID, obtained from Sunwave support staff.",
+        ),
+        th.Property(
+            "client_secret",
+            th.StringType,
+            required=True,
+            description="Client secret, obtained from Sunwave support staff.",
+        ),
+        th.Property(
+            "clinic_id",
+            th.StringType,
+            required=True,
+            description="Clinic ID, obtained by inspecting requests in the browser.",
         ),
         th.Property(
             "start_date",
-            th.DateTimeType,
-            description="The earliest record date to sync",
-        ),
-        th.Property(
-            "api_url",
-            th.StringType,
-            title="API URL",
-            default="https://api.mysample.com",
-            description="The url for the API service",
-        ),
-        th.Property(
-            "user_agent",
-            th.StringType,
-            description=(
-                "A custom User-Agent header to send with each request. Default is "
-                "'<tap_name>/<tap_version>'"
-            ),
+            th.DateType,
+            required=True,
+            description="Start date for the data to be retrieved.",
+            default=(datetime.date.today() - datetime.timedelta(365)).isoformat(),
         ),
     ).to_dict()
 
-    def discover_streams(self) -> list[streams.SunwaveStream]:
+    def discover_streams(self) -> list[Stream]:
         """Return a list of discovered streams.
 
         Returns:
             A list of discovered streams.
         """
         return [
-            streams.GroupsStream(self),
-            streams.UsersStream(self),
+            streams.FormsStream(tap=self),
+            streams.UserStream(self),
+            streams.OpportunitiesStream(self),
+            streams.OpportunityTimelineStream(self),
+            streams.CensusStream(self),
+            #streams.TimelineActivityStream(self),
         ]
 
 
