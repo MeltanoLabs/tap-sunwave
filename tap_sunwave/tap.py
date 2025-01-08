@@ -60,6 +60,7 @@ class TapSunwave(Tap):
             streams.OpportunitiesStream(self),
             streams.OpportunityTimelineStream(self),
             streams.CensusStream(self),
+            #streams.TimelineActivityStream(self),
         ]
 
 

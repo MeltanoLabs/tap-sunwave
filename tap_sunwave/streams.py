@@ -66,9 +66,12 @@ class OpportunitiesStream(SunwaveStream):
         return f"/api/opportunities/createdon/from/{start_date.strftime('%Y-%m-%d')}/until/{end_date.strftime('%Y-%m-%d')}"
     
     def get_child_context(self, record: dict, context: dict) -> dict:
-        return {
-            "opportunity_id": record["opportunity_id"]
-        }
+        if "opportunity_id" in record:
+            return {
+                "opportunity_id": record["opportunity_id"]
+            }
+        else:
+            return None
 
 class OpportunityTimelineStream(SunwaveStream):
     """
@@ -91,7 +94,7 @@ class CensusStream(SunwaveStream):
     name = "census"
     path = "/api/census"
     partitions = [{"census_status":"active"}, {"census_status":"admitted"}, {"census_status":"discharged"}]
-    primary_keys = ["id"]
+    primary_keys = ["Account Id"]
     replication_key = None
 
     @property
@@ -108,3 +111,23 @@ class CensusStream(SunwaveStream):
     @property
     def schema(self):
         return self._get_swagger_schema("#/components/schemas/Census")
+    
+    def get_child_context(self, record: dict, context: dict) -> dict:
+        return {
+            "account_id": record["Account Id"]
+        }
+
+class TimelineActivityStream(SunwaveStream):
+    """
+    Stream for retrieving timeline activity data from Sunwave.
+    """
+    name = "timeline_activity"
+    path = "/api/account/{account_id}/timeline"
+    primary_keys = ["id"]
+    replication_key = None
+    parent_stream_type = CensusStream
+
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/TimelineActivity")
+    
