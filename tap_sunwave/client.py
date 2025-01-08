@@ -56,24 +56,6 @@ class SunwaveStream(RESTStream):
             f"{response.reason} for path: {full_path}. "
             f"{response.text=} for path: {full_path}"
         )
-    
-    def get_records(self, context: Context | None) -> t.Iterable[dict[str, t.Any]]:
-        """Return a generator of record-type dictionary objects.
-
-        Each record emitted should be a dictionary of property names to their values.
-
-        Args:
-            context: Stream partition or context dictionary.
-
-        Yields:
-            One item per (possibly processed) record in the API.
-        """
-        try:
-            return super().get_records(context)
-        except requests.exceptions.JSONDecodeError as e:
-            eVj
-
-            raise e
 
     def parse_response(self, response: requests.Response) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records.

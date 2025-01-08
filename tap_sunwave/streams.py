@@ -83,4 +83,28 @@ class OpportunityTimelineStream(SunwaveStream):
     @property
     def schema(self):
         return self._get_swagger_schema("#/components/schemas/OpportunitiesTimeline")
-   
+
+class CensusStream(SunwaveStream):
+    """
+    Stream for retrieving census data from Sunwave.
+    """
+    name = "census"
+    path = "/api/census"
+    partitions = [{"census_status":"active"}, {"census_status":"admitted"}, {"census_status":"discharged"}]
+    primary_keys = ["id"]
+    replication_key = None
+
+    @property
+    def path(self):
+        start_date_str = self.config["start_date"]
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+        end_date = datetime.now()
+        return "/api/census/{census_status}/from/{start}/until/{end}".format(
+            census_status="{census_status}",
+            start=start_date.strftime('%Y-%m-%d'),
+            end=end_date.strftime('%Y-%m-%d')
+        )
+
+    @property
+    def schema(self):
+        return self._get_swagger_schema("#/components/schemas/Census")
