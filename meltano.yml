@@ -1,13 +1,13 @@
 version: 1
 send_anonymous_usage_stats: true
-project_id: "tap-sunwave"
+project_id: tap-sunwave
 default_environment: test
 environments:
 - name: test
 plugins:
   extractors:
-  - name: "tap-sunwave"
-    namespace: "tap_sunwave"
+  - name: tap-sunwave
+    namespace: tap_sunwave
     pip_url: -e .
     capabilities:
     - state
@@ -22,8 +22,17 @@ plugins:
       sensitive: true
     - name: clinic_id
     select:
-    - "form.*"
+    - opportunity_timeline.*
   loaders:
   - name: target-jsonl
     variant: andyh1203
     pip_url: target-jsonl
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      host: localhost
+      port: 5432
+      user: postgres
+      password: postgres
+      database: postgres
