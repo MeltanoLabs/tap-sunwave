@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 from functools import cached_property
 from importlib import resources
+from singer_sdk.exceptions import FatalAPIError, RetriableAPIError
 
 from singer_sdk.streams import RESTStream
 
@@ -56,22 +57,23 @@ class SunwaveStream(RESTStream):
             f"{response.reason} for path: {full_path}. "
             f"{response.text=} for path: {full_path}"
         )
-
-    def parse_response(self, response: requests.Response) -> t.Iterable[dict]:
-        """Parse the response and return an iterator of result records.
-
-        Args:
-            response: A raw :class:`requests.Response`
-
-        Yields:
-            One item for every item found in the response.
+    
+    def validate_response(self, response: requests.Response) -> None:
+        """Validate HTTP response.
+        Raises:
+            FatalAPIError: If the request is not retriable.
+            RetriableAPIError: If the request is retriable.
         """
+        super().validate_response(response)
+        
         try:
-            yield from super().parse_response(response)
+            if response.json().get("error"):
+                msg = self.response_error_message(response)
+                raise FatalAPIError(msg)
         except requests.exceptions.JSONDecodeError as e:
             # Their API returns a 200 status code when there's an error
             # We detect that by noticing the response isn't valid JSON
-            self.logger.info(self.response_error_message(response))
+            self.response_error_message(response)
             raise e
 
     def _cleanup_schema(self, schema_fragment):
