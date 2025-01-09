@@ -71,6 +71,7 @@ class SunwaveStream(RESTStream):
             # Check if response is a dict and has error
             if isinstance(json_response, dict) and json_response.get("error"):
                 error_msg = self.response_error_message(response)
+                # TODO: figure out how to handle this better
                 if self.name == "opportunity_timeline":
                     log_msg = f"Skipping 'opportunity_timeline' record due to {error_msg}"
                     self.logger.info(log_msg)
