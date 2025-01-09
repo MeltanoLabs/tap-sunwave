@@ -50,7 +50,7 @@ class OpportunitiesStream(SunwaveStream):
     Stream for retrieving data about opportunities from Sunwave.
     """
     name = "opportunity"
-    primary_keys = ["id"]
+    primary_keys = ["opportunity_id"]
     replication_key = None
     
     @property
