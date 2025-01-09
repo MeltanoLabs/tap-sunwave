@@ -7,6 +7,7 @@ from importlib import resources
 from tap_sunwave.client import SunwaveStream
 from datetime import datetime
 import json
+import requests
 
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
@@ -86,6 +87,18 @@ class OpportunityTimelineStream(SunwaveStream):
     @property
     def schema(self):
         return self._get_swagger_schema("#/components/schemas/OpportunitiesTimeline")
+
+    def parse_response(self, response: requests.Response) -> t.Iterable[dict]:
+        """Parse the response and return an iterator of result records.
+
+        Args:
+            response: A raw :class:`requests.Response`
+
+        Yields:
+            One item for every item found in the response.
+        """
+        if isinstance(response.json(), list):
+            yield from super().parse_response(response)
 
 class CensusStream(SunwaveStream):
     """
