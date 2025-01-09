@@ -64,20 +64,7 @@ class SunwaveStream(RESTStream):
             FatalAPIError: If the request is not retriable.
             RetriableAPIError: If the request is retriable.
         """
-        if (
-            response.status_code in self.extra_retry_statuses
-            or response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR
-        ):
-            msg = self.response_error_message(response)
-            raise RetriableAPIError(msg, response)
-
-        if (
-            HTTPStatus.BAD_REQUEST
-            <= response.status_code
-            < HTTPStatus.INTERNAL_SERVER_ERROR
-        ):
-            msg = self.response_error_message(response)
-            raise FatalAPIError(msg)
+        super().validate_response(response)
         
         try:
             if response.json().get("error"):
