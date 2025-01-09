@@ -125,22 +125,3 @@ class CensusStream(SunwaveStream):
     def schema(self):
         return self._get_swagger_schema("#/components/schemas/Census")
     
-    def get_child_context(self, record: dict, context: dict) -> dict:
-        return {
-            "account_id": record["Account Id"]
-        }
-
-class TimelineActivityStream(SunwaveStream):
-    """
-    Stream for retrieving timeline activity data from Sunwave.
-    """
-    name = "timeline_activity"
-    path = "/api/account/{account_id}/timeline"
-    primary_keys = ["id"]
-    replication_key = None
-    parent_stream_type = CensusStream
-
-    @property
-    def schema(self):
-        return self._get_swagger_schema("#/components/schemas/TimelineActivity")
-    
