@@ -67,9 +67,16 @@ class SunwaveStream(RESTStream):
         super().validate_response(response)
         
         try:
-            if response.json().get("error"):
-                msg = self.response_error_message(response)
-                raise FatalAPIError(msg)
+            json_response = response.json()
+            # Check if response is a dict and has error
+            if isinstance(json_response, dict) and json_response.get("error"):
+                error_msg = self.response_error_message(response)
+                # TODO: figure out how to handle this better
+                if self.name == "opportunity_timeline":
+                    log_msg = f"Skipping 'opportunity_timeline' record due to {error_msg}"
+                    self.logger.info(log_msg)
+                else:
+                    raise FatalAPIError(error_msg)
         except requests.exceptions.JSONDecodeError as e:
             # Their API returns a 200 status code when there's an error
             # We detect that by noticing the response isn't valid JSON
