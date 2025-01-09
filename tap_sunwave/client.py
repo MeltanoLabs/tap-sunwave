@@ -94,25 +94,20 @@ class SunwaveStream(RESTStream):
                 self._cleanup_schema(item)
 
     def _get_swagger_schema(self, ref: str) -> dict:
-        """
-        Could be more efficient, but it works.
-        """
-
-        # Adjust the path to your swagger.json file as needed
-        swagger_path = Path("docs/swagger.json")
-
-        with open(swagger_path, "r", encoding="utf-8") as f:
+        """Get schema from packaged swagger file."""
+        # Use package resources to access swagger.json
+        with resources.files(__package__).joinpath("docs/swagger.json").open("r", encoding="utf-8") as f:
             swagger_doc = json.load(f)
 
         # Example: ref => "#/components/schemas/FormStandardResponse"
         # Strip the leading "#/" and split by "/"
         path_parts = ref.lstrip("#/").split("/")
 
-        # Travserse the swagger doc to get the nested object
+        # Traverse the swagger doc to get the nested object
         data = swagger_doc
         for part in path_parts:
             data = data[part]
-        
+
         cleaned_schema = self._cleanup_schema(data["properties"])
         assert len(data["properties"]) > 1, "No properties found in schema"
         return data
