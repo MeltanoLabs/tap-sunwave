@@ -80,7 +80,7 @@ class SunwaveStream(RESTStream):
         except requests.exceptions.JSONDecodeError as e:
             # Their API returns a 200 status code when there's an error
             # We detect that by noticing the response isn't valid JSON
-            msg self.response_error_message(response)
+            msg = self.response_error_message(response)
             raise FatalAPIError(msg)
 
     def _cleanup_schema(self, schema_fragment):
