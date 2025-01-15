@@ -1,41 +1,51 @@
 {
-    "type": "object",
-    "properties": {
-        "id": {
-            "type": "string",
-            "description": "User ID",
-            "example": "404"
-        },
-        "first_name": {
-            "type": "string",
-            "description": "First Name",
-            "example": "Erlich"
-        },
-        "last_name": {
-            "type": "string",
-            "description": "Last Name",
-            "example": "Bachman"
-        },
-        "email": {
-            "type": "string",
-            "description": "Users email address",
-            "example": "admin@sunwave.com"
-        },
-        "created_on": {
-            "type": "string",
-            "description": "Date user was created on",
-            "example": "2019-02-11 18:02:09.0"
-        },
-        "created_by": {
-            "type": "string",
-            "description": "User that created this user",
-            "example": "admin@sunwave.com"
-        },
-        "last_login": {
-            "type": "string",
-            "description": "Date user last logged into the system",
-            "example": "2023-02-23 11:27:07"
-        }
+  "$schema": "http://json-schema.org/schema#",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "created_on": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
-    "description": "User response object"
+    "last_login": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
 }
