@@ -1,0 +1,641 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "Account Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Account Legacy Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admission Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admission Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admission Level Of Care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admission Service Facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admission Time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Admissions Rep": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Age": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Allergy Risk": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Assigned Therapist": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Assigned Therapist Email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Authorization Code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Bd Rep": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Bed Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Building Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Business Development Rep ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Caller Phone Home": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Caller Phone Mobile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Campaign Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Case Manager": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Collector": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Communication Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Culture": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Current Level Of Care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Current Service Facility Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Diagnosis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Dietary Risk": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Discharge Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Discharge Hour": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Discharge Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Do Not Readmit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Do Not Readmit Before Consult": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Do Not Readmit Before Consult Comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Do Not Readmit Comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Drug Of Choice ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "End On": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Financial Class Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "First Contact": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "High Risk": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Insurance Group Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Insurance Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last Level Of Care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Last Service Facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Length Of Stay": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Level Of Care Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Levels Of Care List": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "start_on": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "level_of_care": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "service_facility_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "end_on": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "service_facility": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "level_of_care_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "Marital Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Member Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Mri": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Nickname ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Nurse": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Opportunity Legacy Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Opportunityid": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Address1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient City": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Date Of Birth": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient First Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Gender Code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Last Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Middle Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Phone Home": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Phone Mobile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient State": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Patient Zip": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Payment Method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Planned Discharge": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Policy Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Preadmission Notes ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Previous Admission Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Primary Counselor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Program": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Provider": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Race": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Realm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral Destination": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral Source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral Source Account Owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral Source Contact": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Referral Source Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Religion ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Room Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Secondary Insurance Group Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Secondary Insurance Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Secondary Member Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Secondary Submit Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Secondary Term Date ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Service Facility Id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Start On": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Submit Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Target Service Facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Temporal Detox": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Term Date ": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Transfer From": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Transferred": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

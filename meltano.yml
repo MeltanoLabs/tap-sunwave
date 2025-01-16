@@ -21,8 +21,6 @@ plugins:
     - name: client_secret
       sensitive: true
     - name: clinic_id
-    select:
-    - opportunity_timeline.*
   loaders:
   - name: target-jsonl
     variant: andyh1203

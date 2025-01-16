@@ -1,0 +1,236 @@
+{
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "workflow_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "from_phone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "associated_with": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "associated_with_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task_subject": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_by_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contact_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contact_email": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "related_task_id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "campaign_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contact_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_reminders": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reminder_date_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contact_phones": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assigned_to": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "call_outcome": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "task_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "call_direction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "editable": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task_due_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "activity_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_calendar_link": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "other_log_type": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "created_by": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "task_type_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "associated_contacts": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "contact_display": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "caller_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "to_phone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task_completed_on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assigned_to_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

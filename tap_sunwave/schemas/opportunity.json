@@ -1,0 +1,645 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "abandoned comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "abandoned reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "abandoned_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "abandoned_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account_legacy_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "adm. representative": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "adm. representative email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "admission_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "admission_level_of_care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "admitted_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "business development rep_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "call_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_firstname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_lastname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_phone_home": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_phone_mobile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_phone_office": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "caller_zipcode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "campaign_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "communication type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_time": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discharge_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "drug of choice_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first contact": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "first contact email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gender": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_ad_group": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_campaign": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_click_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_keyword": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "google_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "has_been_scheduled": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "insurance provider": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "insurance_group_number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "level_of_care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lost comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lost reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lost_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lost_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "marital status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "member id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nickname_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "opportunity_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "opportunity_legacy_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "opportunity_referral_source_contact_account_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "opportunity_referral_source_contact_secondary_account_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "opportunity_referral_source_secondary_account_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "outcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parent referral name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient dob": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_phone_home": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_phone_mobile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_phone_work": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_ssn": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "patient_zip": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "policy_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preadmission notes_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "primary_referral_source_contact_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral source contact": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral source opportunity owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral_destination": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral_source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral_source_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral_source_owner_email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relationship": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "religion_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled admission time (hh:mm)": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled program": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled_level_of_care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled_service_facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "secondary term date_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "secondary_referral_source_contact_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "service_facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "submit_claim_to": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_date_of_birth": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_first_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_last_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_ssn": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subscriber_zip": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_admission_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_level_of_care": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_service_facility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "temporal_detox": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "term date_": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "transferred": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

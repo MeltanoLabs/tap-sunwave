@@ -18,7 +18,6 @@ class UserStream(SunwaveStream):
     path = "/api/users"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
-    schema_filepath = SCHEMAS_DIR / f"{name}.json"
 
 class ReferralStream(SunwaveStream):
 
@@ -26,7 +25,6 @@ class ReferralStream(SunwaveStream):
     path = "/api/referrals/status/{status}"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
-    schema_filepath = SCHEMAS_DIR / f"{name}.json"
 
 
 class FormsStream(SunwaveStream):
@@ -36,14 +34,6 @@ class FormsStream(SunwaveStream):
     path = "/api/forms"
     primary_keys = ["id"]
     replication_key = None
-
-    @property
-    def schema(self):
-        """
-        Retrieve the schema for Forms directly from Swagger at:
-        #/components/schemas/FormStandardResponse
-        """
-        return self._get_swagger_schema("#/components/schemas/FormStandardResponse")
     
 
 class OpportunitiesStream(SunwaveStream):
@@ -53,10 +43,6 @@ class OpportunitiesStream(SunwaveStream):
     name = "opportunity"
     primary_keys = ["opportunity_id"]
     replication_key = None
-    
-    @property
-    def schema(self):
-        return self._get_swagger_schema("#/components/schemas/Opportunities")
    
     @property
     def path(self):
@@ -83,10 +69,6 @@ class OpportunityTimelineStream(SunwaveStream):
     replication_key = None
     parent_stream_type = OpportunitiesStream
     path =  "/api/opportunities/{opportunity_id}/timeline"
-    
-    @property
-    def schema(self):
-        return self._get_swagger_schema("#/components/schemas/OpportunitiesTimeline")
 
     def parse_response(self, response: requests.Response) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records.
@@ -120,8 +102,4 @@ class CensusStream(SunwaveStream):
             start=start_date.strftime('%Y-%m-%d'),
             end=end_date.strftime('%Y-%m-%d')
         )
-
-    @property
-    def schema(self):
-        return self._get_swagger_schema("#/components/schemas/Census")
     
