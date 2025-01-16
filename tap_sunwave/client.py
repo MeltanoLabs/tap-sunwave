@@ -28,8 +28,9 @@ class SunwaveStream(RESTStream):
 
     url_base = "https://emr.sunwavehealth.com/SunwaveEMR"
     auth_errors = 0    
-    schema_filepath = SCHEMAS_DIR / f"{name}.json"
-    
+    @property
+    def schema_filepath(self):
+        return SCHEMAS_DIR / f"{self.name}.json"
     
     def _request(self, prepared_request: requests.PreparedRequest, context: Context | None) -> requests.Response:
         """Auth wasn't getting ran for every retried request, so we need to do it here"""
@@ -108,22 +109,3 @@ class SunwaveStream(RESTStream):
         elif isinstance(schema_fragment, list):
             for item in schema_fragment:
                 self._cleanup_schema(item)
-
-    def _get_swagger_schema(self, ref: str) -> dict:
-        """Get schema from packaged swagger file."""
-        # Use package resources to access swagger.json
-        with resources.files(__package__).joinpath("docs/swagger.json").open("r", encoding="utf-8") as f:
-            swagger_doc = json.load(f)
-
-        # Example: ref => "#/components/schemas/FormStandardResponse"
-        # Strip the leading "#/" and split by "/"
-        path_parts = ref.lstrip("#/").split("/")
-
-        # Traverse the swagger doc to get the nested object
-        data = swagger_doc
-        for part in path_parts:
-            data = data[part]
-
-        cleaned_schema = self._cleanup_schema(data["properties"])
-        assert len(data["properties"]) > 1, "No properties found in schema"
-        return data
