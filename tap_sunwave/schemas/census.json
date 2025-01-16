@@ -5,637 +5,633 @@
     "null"
   ],
   "properties": {
-    "abandoned comment": {
+    "Account Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "abandoned reason": {
+    "Account Legacy Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "abandoned_by": {
+    "Admission Date": {
       "type": [
         "string",
         "null"
       ]
     },
-    "abandoned_date": {
+    "Admission Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "account_id": {
+    "Admission Level Of Care": {
       "type": [
         "string",
         "null"
       ]
     },
-    "account_legacy_id": {
+    "Admission Service Facility": {
       "type": [
         "string",
         "null"
       ]
     },
-    "adm. representative": {
+    "Admission Time": {
       "type": [
         "string",
         "null"
       ]
     },
-    "adm. representative email": {
+    "Admissions Rep": {
       "type": [
         "string",
         "null"
       ]
     },
-    "admission_date": {
+    "Age": {
       "type": [
         "string",
         "null"
       ]
     },
-    "admission_level_of_care": {
+    "Allergy Risk": {
       "type": [
         "string",
         "null"
       ]
     },
-    "admitted_by": {
+    "Assigned Therapist": {
       "type": [
         "string",
         "null"
       ]
     },
-    "business development rep_": {
+    "Assigned Therapist Email": {
       "type": [
         "string",
         "null"
       ]
     },
-    "call_id": {
+    "Authorization Code": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_address": {
+    "Bd Rep": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_city": {
+    "Bed Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_email": {
+    "Building Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_firstname": {
+    "Business Development Rep ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_lastname": {
+    "Caller Phone Home": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_phone_home": {
+    "Caller Phone Mobile": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_phone_mobile": {
+    "Campaign Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_phone_office": {
+    "Case Manager": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_state": {
+    "Collector": {
       "type": [
         "string",
         "null"
       ]
     },
-    "caller_zipcode": {
+    "Communication Type": {
       "type": [
         "string",
         "null"
       ]
     },
-    "campaign id": {
+    "Culture": {
       "type": [
         "string",
         "null"
       ]
     },
-    "campaign_type": {
+    "Current Level Of Care": {
       "type": [
         "string",
         "null"
       ]
     },
-    "communication type": {
+    "Current Service Facility Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "created_by": {
+    "Diagnosis": {
       "type": [
         "string",
         "null"
       ]
     },
-    "created_on": {
+    "Dietary Risk": {
       "type": [
         "string",
         "null"
       ]
     },
-    "created_time": {
+    "Discharge Date": {
       "type": [
         "string",
         "null"
       ]
     },
-    "discharge_date": {
+    "Discharge Hour": {
       "type": [
         "string",
         "null"
       ]
     },
-    "drug of choice_": {
+    "Discharge Type": {
       "type": [
         "string",
         "null"
       ]
     },
-    "first contact": {
+    "Do Not Readmit": {
       "type": [
         "string",
         "null"
       ]
     },
-    "first contact email": {
+    "Do Not Readmit Before Consult": {
       "type": [
         "string",
         "null"
       ]
     },
-    "gender": {
+    "Do Not Readmit Before Consult Comment": {
       "type": [
         "string",
         "null"
       ]
     },
-    "google_ad_group": {
+    "Do Not Readmit Comment": {
       "type": [
         "string",
         "null"
       ]
     },
-    "google_campaign": {
+    "Drug Of Choice ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "google_click_id": {
+    "End On": {
       "type": [
         "string",
         "null"
       ]
     },
-    "google_keyword": {
+    "Financial Class Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "google_source": {
+    "First Contact": {
       "type": [
         "string",
         "null"
       ]
     },
-    "has_been_scheduled": {
+    "High Risk": {
       "type": [
         "string",
         "null"
       ]
     },
-    "insurance provider": {
+    "Insurance Group Number": {
       "type": [
         "string",
         "null"
       ]
     },
-    "insurance_group_number": {
+    "Insurance Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "level_of_care": {
+    "Last Level Of Care": {
       "type": [
         "string",
         "null"
       ]
     },
-    "lost comment": {
+    "Last Service Facility": {
       "type": [
         "string",
         "null"
       ]
     },
-    "lost reason": {
+    "Length Of Stay": {
       "type": [
         "string",
         "null"
       ]
     },
-    "lost_by": {
+    "Level Of Care Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "lost_date": {
+    "Levels Of Care List": {
       "type": [
-        "string",
-        "null"
-      ]
-    },
-    "marital status": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "member id": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "nickname_": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "opportunity_id": {
-      "type": [
-        "string",
+        "array",
         "null"
-      ]
-    },
-    "opportunity_legacy_id": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "opportunity_referral_source_contact_account_owner": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "opportunity_referral_source_contact_secondary_account_owner": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "opportunity_referral_source_secondary_account_owner": {
-      "type": [
-        "string",
-        "null"
-      ]
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "start_on": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "level_of_care": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "service_facility_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "end_on": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "service_facility": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "level_of_care_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
     },
-    "outcome": {
+    "Marital Status": {
       "type": [
         "string",
         "null"
       ]
     },
-    "parent referral name": {
+    "Member Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient dob": {
+    "Mri": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient name": {
+    "Nickname ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_address": {
+    "Nurse": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_city": {
+    "Opportunity Legacy Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_email": {
+    "Opportunityid": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_phone_home": {
+    "Patient Address1": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_phone_mobile": {
+    "Patient City": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_phone_work": {
+    "Patient Date Of Birth": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_ssn": {
+    "Patient Email": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_state": {
+    "Patient First Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "patient_zip": {
+    "Patient Gender Code": {
       "type": [
         "string",
         "null"
       ]
     },
-    "policy_type": {
+    "Patient Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "preadmission notes_": {
+    "Patient Last Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "primary_referral_source_contact_owner": {
+    "Patient Middle Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral name": {
+    "Patient Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral source contact": {
+    "Patient Phone Home": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral source opportunity owner": {
+    "Patient Phone Mobile": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral type": {
+    "Patient State": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral_destination": {
+    "Patient Zip": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral_source_id": {
+    "Payment Method": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral_source_owner": {
+    "Planned Discharge": {
       "type": [
         "string",
         "null"
       ]
     },
-    "referral_source_owner_email": {
+    "Policy Type": {
       "type": [
         "string",
         "null"
       ]
     },
-    "relationship": {
+    "Preadmission Notes ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "religion_": {
+    "Previous Admission Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled admission time (hh:mm)": {
+    "Primary Counselor": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled on": {
+    "Program": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled program": {
+    "Provider": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled_by": {
+    "Race": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled_level_of_care": {
+    "Realm": {
       "type": [
         "string",
         "null"
       ]
     },
-    "scheduled_service_facility": {
+    "Referral Destination": {
       "type": [
         "string",
         "null"
       ]
     },
-    "secondary term date_": {
+    "Referral Source": {
       "type": [
         "string",
         "null"
       ]
     },
-    "secondary_referral_source_contact_owner": {
+    "Referral Source Account Owner": {
       "type": [
         "string",
         "null"
       ]
     },
-    "service_facility": {
+    "Referral Source Contact": {
       "type": [
         "string",
         "null"
       ]
     },
-    "stage": {
+    "Referral Source Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "submit_claim_to": {
+    "Religion ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_address": {
+    "Room Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_city": {
+    "Secondary Insurance Group Number": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_date_of_birth": {
+    "Secondary Insurance Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_first_name": {
+    "Secondary Member Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_last_name": {
+    "Secondary Submit Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_ssn": {
+    "Secondary Term Date ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_state": {
+    "Service Facility Id": {
       "type": [
         "string",
         "null"
       ]
     },
-    "subscriber_zip": {
+    "Start On": {
       "type": [
         "string",
         "null"
       ]
     },
-    "target_admission_date": {
+    "Submit Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "target_level_of_care": {
+    "Target Service Facility": {
       "type": [
         "string",
         "null"
       ]
     },
-    "target_service_facility": {
+    "Temporal Detox": {
       "type": [
         "string",
         "null"
       ]
     },
-    "temporal_detox": {
+    "Term Date ": {
       "type": [
         "string",
         "null"
       ]
     },
-    "term date_": {
+    "Transfer From": {
       "type": [
         "string",
         "null"
       ]
     },
-    "transferred": {
+    "Transferred": {
       "type": [
         "string",
         "null"

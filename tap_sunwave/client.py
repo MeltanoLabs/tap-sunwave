@@ -27,6 +27,16 @@ class SunwaveStream(RESTStream):
     """Sunwave stream class."""
 
     url_base = "https://emr.sunwavehealth.com/SunwaveEMR"
+    auth_errors = 0    
+    schema_filepath = SCHEMAS_DIR / f"{name}.json"
+    
+    
+    def _request(self, prepared_request: requests.PreparedRequest, context: Context | None) -> requests.Response:
+        """Auth wasn't getting ran for every retried request, so we need to do it here"""
+        # Manually run authenticator before sending the request
+        reauthed_request = self.authenticator.authenticate_request(prepared_request)
+        # Then call the parent's method with our newly authenticated request
+        return super()._request(reauthed_request, context)
 
     @cached_property
     def authenticator(self) -> Auth:
@@ -71,17 +81,14 @@ class SunwaveStream(RESTStream):
             # Check if response is a dict and has error
             if isinstance(json_response, dict) and json_response.get("error"):
                 error_msg = self.response_error_message(response)
-                # TODO: figure out how to handle this better
-                if self.name == "opportunity_timeline":
-                    log_msg = f"Skipping 'opportunity_timeline' record due to {error_msg}"
-                    self.logger.info(log_msg)
-                else:
-                    raise FatalAPIError(error_msg)
+                raise FatalAPIError(error_msg)
         except requests.exceptions.JSONDecodeError as e:
             # Their API returns a 200 status code when there's an error
             # We detect that by noticing the response isn't valid JSON
-            msg self.response_error_message(response)
+            msg = self.response_error_message(response)
             raise FatalAPIError(msg)
+        # Reset auth errors
+        self.auth_errors = 0
 
     def _cleanup_schema(self, schema_fragment):
         if isinstance(schema_fragment, dict):
