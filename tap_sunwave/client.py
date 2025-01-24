@@ -39,6 +39,23 @@ class SunwaveStream(RESTStream):
         # Then call the parent's method with our newly authenticated request
         return super()._request(reauthed_request, context)
 
+    def _create_in_partitions_list(
+        self,
+        partitions: list[dict],
+        state_partition_context: types.Context,
+    ) -> dict:
+        """
+        State for this tap is too big and shouldn't be logged by default. This
+        override only appends partitions to tap_state if this is in an incremental
+        stream.
+
+        Replaces `singer_sdk.helpers._state._create_in_partitions_list()`.
+        """
+        new_partition_state = {"context": state_partition_context}
+        if self.replication_key is not None:  # OVERRIDE
+            partitions.append(new_partition_state)
+        return new_partition_state
+
     @cached_property
     def authenticator(self) -> Auth:
         return SunwaveAuthenticator.create_for_stream(self)
