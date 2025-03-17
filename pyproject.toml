@@ -31,7 +31,7 @@ pyjwt = "~=2.10.0"
 pytest = ">=8"
 singer-sdk = { version="~=0.44.0", extras = ["testing"] }
 black = "~=25.1.0"
-ruff = "~=0.9.1"
+ruff = "~=0.11.0"
 
 [tool.poetry.extras]
 s3 = ["fs-s3fs"]
