@@ -30,7 +30,7 @@ pyjwt = "~=2.10.0"
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8"
 singer-sdk = { version="~=0.47.4", extras = ["testing"] }
-black = "~=25.9.0"
+black = "~=25.11.0"
 ruff = "~=0.14.0"
 
 [tool.poetry.extras]
