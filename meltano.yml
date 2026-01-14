@@ -1,4 +1,4 @@
-version: 1
+requires_meltano: ">=4.0"
 send_anonymous_usage_stats: true
 project_id: tap-sunwave
 default_environment: test
@@ -15,12 +15,16 @@ plugins:
     - discover
     - about
     - stream-maps
+    - structured-logging
     settings:
     - name: user_id
     - name: client_id
     - name: client_secret
       sensitive: true
     - name: clinic_id
+    select:
+    - "*.*"
+    - "!opportunity_timeline.*"  # Seriously rate-limited :(
   loaders:
   - name: target-jsonl
     variant: andyh1203

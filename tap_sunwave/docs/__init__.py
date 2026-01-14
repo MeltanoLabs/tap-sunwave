@@ -1,1 +1,1 @@
-"""Documentation resources.""" 
+"""Documentation resources."""

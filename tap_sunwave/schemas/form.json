@@ -1,27 +1,21 @@
 {
-  "$schema": "http://json-schema.org/schema#",
-  "type": [
-    "object",
-    "null"
-  ],
+  "type": "object",
   "properties": {
     "is_n_form": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "is n form",
+      "example": "false"
     },
     "name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Name",
+      "example": "Face Sheet"
     },
     "id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "ID",
+      "example": "22"
     }
-  }
+  },
+  "description": "Response object when requesting general list of forms"
 }

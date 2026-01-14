@@ -1,641 +1,482 @@
 {
-  "$schema": "http://json-schema.org/schema#",
-  "type": [
-    "object",
-    "null"
-  ],
+  "type": "object",
   "properties": {
     "Account Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Account ID",
+      "example": "697"
     },
     "Account Legacy Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Account Legacy Id",
+      "example": "44445"
     },
     "Admission Date": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Date of Admission",
+      "example": "2023-07-17"
     },
     "Admission Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Admission ID",
+      "example": "3855"
     },
     "Admission Level Of Care": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Admission Level of Care",
+      "example": "Detox"
     },
     "Admission Service Facility": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Admission Service Facility",
+      "example": "SF 1 - Clinic 131"
     },
     "Admission Time": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Time of Admission",
+      "example": "10:29"
     },
     "Admissions Rep": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Admissions Representative",
+      "example": "William David"
     },
     "Age": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Age of Patient",
+      "example": "23"
     },
     "Allergy Risk": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Risk of Allergies",
+      "example": "Penicillin"
     },
     "Assigned Therapist": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Therapist assigned to Patient",
+      "example": "James Smith"
     },
     "Assigned Therapist Email": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Therapist's email assigned to Patient",
+      "example": "datd@mail.com"
     },
     "Authorization Code": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Bd Rep": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Bed Name": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Building Name": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Business Development Rep ": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Authorization Code",
+      "example": "15252"
     },
     "Caller Phone Home": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Caller's Home Phone",
+      "example": 7864599985
     },
     "Caller Phone Mobile": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Caller's Mobile Phone",
+      "example": 6154148965
     },
     "Campaign Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Campaign Id",
+      "example": "Email Campaign"
     },
     "Case Manager": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Collector": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Case Manager",
+      "example": "James Smith"
     },
     "Communication Type": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Type of Communication",
+      "example": "Email"
     },
     "Culture": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Culture",
+      "example": "European"
     },
     "Current Level Of Care": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Current Level of Care",
+      "example": "Discharged"
     },
     "Current Service Facility Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Current name of Service Facility",
+      "example": "SF 1 - Clinic 131"
+    },
+    "Deceased Status": {
+      "type": ["string", "null"],
+      "description": "Flag that indicates if the patient is deceased",
+      "example": "true"
+    },
+    "Deceased Comment": {
+      "type": ["string", "null"],
+      "description": "Additional notes or context regarding the patient's death",
+      "example": "Confirmed by hospital staff on site"
+    },
+    "Deceased Date": {
+      "type": ["string", "null"],
+      "description": "The official date when the patient was confirmed deceased",
+      "example": "2025-10-04"
     },
     "Diagnosis": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Diagnosis",
+      "example": "F1110"
     },
     "Dietary Risk": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Dietary Risk",
+      "example": "Nuts"
     },
     "Discharge Date": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Discharge Date",
+      "example": "2023-09-28"
     },
     "Discharge Hour": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Discharge Hour",
+      "example": "1"
     },
     "Discharge Type": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Discharge Type",
+      "example": "Successful"
     },
-    "Do Not Readmit": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Do Not Readmit Before Consult": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Do Not Readmit Before Consult Comment": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Do Not Readmit Comment": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Drug Of Choice ": {
-      "type": [
-        "string",
-        "null"
-      ]
+    "Admission Source": {
+      "type": ["string", "null"],
+      "description": "Admission Source",
+      "example": "Clinic"
     },
     "End On": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "End On",
+      "example": "2023-09-28"
     },
     "Financial Class Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Financial Class Name",
+      "example": "Medicaid"
     },
     "First Contact": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "First Contact",
+      "example": "Joe"
     },
     "High Risk": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "High risk",
+      "example": "Alcoholism"
     },
     "Insurance Group Number": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Insurance Group Number",
+      "example": "2222"
     },
     "Insurance Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Name of Insurance",
+      "example": "Allied"
     },
     "Last Level Of Care": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Last Level of Care",
+      "example": "IOP"
     },
     "Last Service Facility": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Last Service Facility",
+      "example": "SF 1 - Clinic 131"
     },
     "Length Of Stay": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Length of Stay",
+      "example": "73"
     },
     "Level Of Care Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Level of Care ID",
+      "example": "4"
     },
     "Levels Of Care List": {
-      "type": [
-        "array",
-        "null"
+      "type": ["array", "null"],
+      "description": "List of Levels of Care entities",
+      "example": [
+        {
+          "start_on": "2023-09-28",
+          "level_of_care": "Discharged",
+          "service_facility_id": "1",
+          "end_on": "2023-09-28",
+          "service_facility": "SF 1 - Clinic 131",
+          "level_of_care_id": "4"
+        },
+        {
+          "start_on": "2023-09-05",
+          "level_of_care": "IOP",
+          "service_facility_id": "2",
+          "end_on": "2023-09-28",
+          "service_facility": "SF 2 - Clinic 131",
+          "level_of_care_id": "6"
+        },
+        {
+          "start_on": "2023-07-17",
+          "level_of_care": "Detox",
+          "service_facility_id": "1",
+          "end_on": "2023-09-05",
+          "service_facility": "SF 1 - Clinic 131",
+          "level_of_care_id": "1"
+        }
       ],
       "items": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": "object",
         "properties": {
           "start_on": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "Start date",
+            "example": "2020-08-19"
           },
           "level_of_care": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "Level of Care",
+            "example": "Discharged"
           },
           "service_facility_id": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "Service Facility ID",
+            "example": "14"
           },
           "end_on": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "End date",
+            "example": "2020-08-19"
           },
           "service_facility": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "Service Facility",
+            "example": "SF 5 - Clinic 141/131 - son"
           },
           "level_of_care_id": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"],
+            "description": "Level of Care ID",
+            "example": "5"
           }
-        }
+        },
+        "description": "Object for level of care specifics"
       }
     },
     "Marital Status": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Martial Status",
+      "example": "Single"
     },
     "Member Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Member ID",
+      "example": "11111"
     },
     "Mri": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Nickname ": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "MRI",
+      "example": "2146"
     },
     "Nurse": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Nurse",
+      "example": "Fred Martin"
     },
     "Opportunity Legacy Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Opportunity Legacy ID",
+      "example": "656675"
     },
     "Opportunityid": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Opportunity ID",
+      "example": "637"
     },
     "Patient Address1": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Address of Patient",
+      "example": "369 Wolf Run Road"
     },
     "Patient City": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "City of Patient",
+      "example": "COLLIERVILLE"
     },
     "Patient Date Of Birth": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient Date of Birth",
+      "example": "2000-02-20"
     },
     "Patient Email": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient Email",
+      "example": "aaelim-aaelim@gmail.com"
     },
     "Patient First Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "First name of Patient",
+      "example": "Aaelim"
     },
     "Patient Gender Code": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient gender code",
+      "example": "F"
     },
     "Patient Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient ID",
+      "example": "3240"
     },
     "Patient Last Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Last name of Patient",
+      "example": "Aaelim"
     },
     "Patient Middle Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Middle name of Patient",
+      "example": "Sanders"
     },
     "Patient Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Name of Patient",
+      "example": "Aaelim Aaelim"
     },
     "Patient Phone Home": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient's home phone",
+      "example": 7864385625
     },
     "Patient Phone Mobile": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient's mobile phone",
+      "example": 7864382454
     },
     "Patient State": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient's state",
+      "example": "FL"
     },
     "Patient Zip": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Patient's zip code",
+      "example": "38017"
     },
     "Payment Method": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Payment Method",
+      "example": "Visa"
     },
     "Planned Discharge": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Planned discharged",
+      "example": "2023-09-28T00:00:00.000Z"
     },
     "Policy Type": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Preadmission Notes ": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Policy Type",
+      "example": "Residential"
     },
     "Previous Admission Id": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Primary Counselor": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "ID of the patient's previous admission",
+      "example": "35655"
     },
     "Program": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Provider": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Program",
+      "example": "Rehabilitation"
     },
     "Race": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Race",
+      "example": "Caucasian"
     },
     "Realm": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Realm",
+      "example": "UFHealth 141 / 131"
+    },
+    "Referal Source": {
+      "type": ["string", "null"],
+      "description": "Referral Source",
+      "example": "CNT"
     },
     "Referral Destination": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Referral Source": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Referral Destination",
+      "example": "CNT"
     },
     "Referral Source Account Owner": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Referral Source Account Owner",
+      "example": "Mark Anton"
     },
     "Referral Source Contact": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Referral Source Contact",
+      "example": "Perry Andrew"
     },
     "Referral Source Id": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Religion ": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Room Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Referral Source ID",
+      "example": "219"
     },
     "Secondary Insurance Group Number": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Secondary Insurance Group Number",
+      "example": "5"
     },
     "Secondary Insurance Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Secondary Insurance Name",
+      "example": "CNT"
     },
     "Secondary Member Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Secondary Member ID",
+      "example": "4"
     },
     "Secondary Submit Name": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Secondary Term Date ": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Secondary Submit Name",
+      "example": "James"
     },
     "Service Facility Id": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Service Facility ID",
+      "example": "14"
     },
     "Start On": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Start Date",
+      "example": "2020-08-19"
     },
     "Submit Name": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Submit Name",
+      "example": "Ryan"
     },
     "Target Service Facility": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Target Service Facility",
+      "example": "SF 5 - Clinic 141/131 - son"
     },
     "Temporal Detox": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Term Date ": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "Transfer From": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Temporal Detox",
+      "example": "CNT"
     },
     "Transferred": {
-      "type": [
-        "string",
-        "null"
-      ]
+      "type": ["string", "null"],
+      "description": "Transferred",
+      "example": "true"
     }
-  }
+  },
+  "description": "Census Response Object"
 }

@@ -1,9 +1,11 @@
-[tool.poetry]
+[project]
 name = "tap-sunwave"
-version = "0.0.1"
+dynamic = ["version"]
 description = "Singer tap for Sunwave, built with the Meltano Singer SDK."
+authors = [{ name = "Pat Nadolny", email = "firstname.lastname@example.com" }]
+requires-python = ">=3.10"
 readme = "README.md"
-authors = ["Pat Nadolny <firstname.lastname@example.com>"]
+license = "Apache-2.0"
 keywords = [
     "ELT",
     "Sunwave",
@@ -11,40 +13,67 @@ keywords = [
 classifiers = [
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
-license = "Apache-2.0"
+dependencies = [
+    "singer-sdk~=0.53.0",
+    "requests~=2.32.3",
+    "typing-extensions>=4.15.0 ; python_full_version < '3.12'",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.9"
-singer-sdk = { version="~=0.47.4", extras = [] }
-fs-s3fs = { version = "~=1.1.1", optional = true }
-requests = "~=2.32.3"
-python-dotenv = "~=1.2.1"
-pyjwt = "~=2.10.0"
+[project.optional-dependencies]
+s3 = ["s3fs~=2026.1.0"]
 
-[tool.poetry.group.dev.dependencies]
-pytest = ">=8"
-singer-sdk = { version="~=0.47.4", extras = ["testing"] }
-black = "~=25.11.0"
-ruff = "~=0.14.0"
+[project.scripts]
+tap-sunwave = "tap_sunwave.tap:TapSunwave.cli"
 
-[tool.poetry.extras]
-s3 = ["fs-s3fs"]
+[dependency-groups]
+dev = [
+    "ruff~=0.14.0",
+    { include-group = "testing" },
+]
+testing = [
+    "pytest>=9",
+    "singer-sdk[testing]",
+]
+typing = [
+    "mypy>=1.19.1",
+    "ty>=0.0.11",
+    "types-requests>=2.32.4.20260107",
+]
 
-[tool.pytest.ini_options]
-addopts = '--durations=10'
+[build-system]
+requires = [
+    "hatchling~=1.28.0",
+    "hatch-vcs~=0.5.0",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+fallback-version = "0.0.0.dev0"
+source = "vcs"
+
+[tool.pytest]
+addopts = [
+    "-v",
+    "--durations=10",
+]
+log_level = "INFO"
+minversion = "9"
 
 [tool.mypy]
-python_version = "3.12"
+follow_untyped_imports = true
+warn_redundant_casts = true
+warn_unreachable = true
 warn_unused_configs = true
+warn_unused_ignores = true
 
 [tool.ruff]
-target-version = "py39"
+line-length = 120
 
 [tool.ruff.lint]
 ignore = [
@@ -57,13 +86,8 @@ select = ["ALL"]
 [tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-# CLI declaration
-tap-sunwave = 'tap_sunwave.tap:TapSunwave.cli'

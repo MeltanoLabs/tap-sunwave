@@ -2,11 +2,26 @@
 
 from __future__ import annotations
 
-import datetime
+import sys
+from datetime import datetime, timedelta, timezone
+from typing import TYPE_CHECKING
+
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_sunwave import streams
+
+if sys.version_info >= (3, 12):
+    from typing import override
+else:
+    from typing_extensions import override
+
+if TYPE_CHECKING:
+    from singer_sdk import Stream
+
+
+def _default_date() -> str:
+    return (datetime.now(tz=timezone.utc).date() - timedelta(365)).isoformat()
 
 
 class TapSunwave(Tap):
@@ -44,10 +59,11 @@ class TapSunwave(Tap):
             th.DateType,
             required=True,
             description="Start date for the data to be retrieved.",
-            default=(datetime.date.today() - datetime.timedelta(365)).isoformat(),
+            default=_default_date(),
         ),
     ).to_dict()
 
+    @override
     def discover_streams(self) -> list[Stream]:
         """Return a list of discovered streams.
 
@@ -60,7 +76,6 @@ class TapSunwave(Tap):
             streams.OpportunitiesStream(self),
             streams.OpportunityTimelineStream(self),
             streams.CensusStream(self),
-            #streams.TimelineActivityStream(self),
         ]
 
 
