@@ -6751,12 +6751,12 @@
             "type": "string",
             "description": "ISO 3166 country name",
             "example": "Canada"
-          },          
+          },
           "country_code" : {
             "type": "string",
             "description": "ISO 3166 country three character code",
             "example": "CAN"
-          },          
+          },
           "phone": {
             "type": "string",
             "description": "phone",

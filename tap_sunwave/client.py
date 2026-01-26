@@ -4,9 +4,7 @@ from __future__ import annotations
 
 import sys
 from functools import cached_property
-from http import HTTPStatus
 from typing import TYPE_CHECKING
-from urllib.parse import urlparse
 
 import requests
 from singer_sdk import SchemaDirectory, StreamSchema
