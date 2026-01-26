@@ -20,6 +20,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+    'backports-datetime-fromisoformat>=2.0.1; python_version<"3.11"',
     "singer-sdk~=0.53.0",
     "requests~=2.32.3",
     "typing-extensions>=4.15.0 ; python_full_version < '3.12'",
@@ -41,6 +42,7 @@ testing = [
     "singer-sdk[testing]",
 ]
 typing = [
+    "backports-datetime-fromisoformat>=2.0.3",
     "mypy>=1.19.1",
     "ty>=0.0.11",
     "types-requests>=2.32.4.20260107",
@@ -91,3 +93,7 @@ allow-star-arg-any = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.uv]
+prerelease = "allow"
+required-version = ">=0.9.17"

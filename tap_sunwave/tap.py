@@ -56,9 +56,12 @@ class TapSunwave(Tap):
         ),
         th.Property(
             "start_date",
-            th.DateType,
+            th.DateTimeType,
             required=True,
-            description="Start date for the data to be retrieved.",
+            description=(
+                "Start date for the data to be retrieved. If a date-time is provided, "
+                "only the date portion will be used."
+            ),
             default=_default_date(),
         ),
     ).to_dict()

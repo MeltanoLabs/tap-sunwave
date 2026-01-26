@@ -8,6 +8,13 @@ from typing import TYPE_CHECKING, ClassVar
 
 from tap_sunwave.client import SunwaveStream
 
+if sys.version_info >= (3, 11):
+    pass
+else:
+    from backports.datetime_fromisoformat import MonkeyPatch
+
+    MonkeyPatch.patch_fromisoformat()
+
 if sys.version_info >= (3, 12):
     from typing import override
 else:
@@ -55,8 +62,7 @@ class OpportunitiesStream(SunwaveStream):
     @property
     def path(self) -> str:
         # Use strptime() instead of fromisoformat() for broader Python version support
-        start_date_str = self.config["start_date"]
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")  # noqa: DTZ007
+        start_date = datetime.fromisoformat(self.config["start_date"])
         end_date = datetime.now(tz=timezone.utc)  # or datetime.today(), depending on your needs
         return (
             f"/api/opportunities/createdon/from/{start_date.strftime('%Y-%m-%d')}/until/{end_date.strftime('%Y-%m-%d')}"
@@ -110,8 +116,7 @@ class CensusStream(SunwaveStream):
 
     @property
     def path(self) -> str:
-        start_date_str = self.config["start_date"]
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")  # noqa: DTZ007
+        start_date = datetime.fromisoformat(self.config["start_date"])
         end_date = datetime.now(tz=timezone.utc)
         return "/api/census/{census_status}/from/{start}/until/{end}".format(
             census_status="{census_status}",
