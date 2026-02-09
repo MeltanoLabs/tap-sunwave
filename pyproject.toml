@@ -34,7 +34,7 @@ tap-sunwave = "tap_sunwave.tap:TapSunwave.cli"
 
 [dependency-groups]
 dev = [
-    "ruff~=0.14.0",
+    "ruff~=0.15.0",
     { include-group = "testing" },
 ]
 testing = [
