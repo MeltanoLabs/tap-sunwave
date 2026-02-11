@@ -27,11 +27,33 @@ if TYPE_CHECKING:
     from singer_sdk.helpers.types import Context
 
 
+SUNWAVE_DATETIME_FORMAT = "%m/%d/%Y %I:%M:%S %p"
+
+
+def _normalize_sunwave_datetime(value: str | None) -> str | None:
+    """Convert Sunwave datetime format to ISO 8601."""
+    if not value:
+        return value
+    try:
+        return (
+            datetime.strptime(value, SUNWAVE_DATETIME_FORMAT)
+            .replace(tzinfo=timezone.utc)
+            .isoformat()
+        )
+    except ValueError:
+        return value
+
+
 class UserStream(SunwaveStream):
     name = "user"
     path = "/api/users"
     primary_keys = ("id",)
     replication_key = None
+
+    @override
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        row["created_on"] = _normalize_sunwave_datetime(row.get("created_on"))
+        return row
 
 
 class ReferralStream(SunwaveStream):
@@ -39,6 +61,11 @@ class ReferralStream(SunwaveStream):
     path = "/api/referrals/status/{status}"
     primary_keys = ("id",)
     replication_key = None
+
+    @override
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        row["created_on"] = _normalize_sunwave_datetime(row.get("created_on"))
+        return row
 
 
 class FormsStream(SunwaveStream):
@@ -51,22 +78,25 @@ class FormsStream(SunwaveStream):
 
 
 class OpportunitiesStream(SunwaveStream):
-    """
-    Stream for retrieving data about opportunities from Sunwave.
-    """
+    """Stream for retrieving data about opportunities from Sunwave."""
 
     name = "opportunity"
     primary_keys = ("opportunity_id",)
-    replication_key = None
+    replication_key = "created_on"
 
     @property
     def path(self) -> str:
-        # Use strptime() instead of fromisoformat() for broader Python version support
-        start_date = datetime.fromisoformat(self.config["start_date"])
-        end_date = datetime.now(tz=timezone.utc)  # or datetime.today(), depending on your needs
+        bookmark = self.get_starting_replication_key_value(None)
+        start_date = datetime.fromisoformat(bookmark or self.config["start_date"])
+        end_date = datetime.now(tz=timezone.utc)
         return (
             f"/api/opportunities/createdon/from/{start_date.strftime('%Y-%m-%d')}/until/{end_date.strftime('%Y-%m-%d')}"
         )
+
+    @override
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        row["created_on"] = _normalize_sunwave_datetime(row.get("created_on"))
+        return row
 
     @override
     def get_child_context(self, record: dict, context: Context | None) -> Context | None:
@@ -76,28 +106,21 @@ class OpportunitiesStream(SunwaveStream):
 
 
 class OpportunityTimelineStream(SunwaveStream):
-    """
-    Stream for retrieving data about opportunities from Sunwave.
-    """
+    """Stream for retrieving timeline data for opportunities from Sunwave."""
 
     name = "opportunity_timeline"
+    records_jsonpath = "$[*]"
     primary_keys = ("id",)
-    replication_key = None
+    replication_key = "created_on"
+    state_partitioning_keys: ClassVar[list[str]] = []
+    ignore_parent_replication_keys = True
     parent_stream_type = OpportunitiesStream
     path = "/api/opportunities/{opportunity_id}/timeline"
 
     @override
-    def parse_response(self, response: requests.Response) -> Iterable[dict]:
-        """Parse the response and return an iterator of result records.
-
-        Args:
-            response: A raw :class:`requests.Response`
-
-        Yields:
-            One item for every item found in the response.
-        """
-        if isinstance(response.json(), list):
-            yield from super().parse_response(response)
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        row["created_on"] = _normalize_sunwave_datetime(row.get("created_on"))
+        return row
 
 
 class CensusStream(SunwaveStream):
