@@ -55,6 +55,13 @@ class TapSunwave(Tap):
             description="Clinic ID, obtained by inspecting requests in the browser.",
         ),
         th.Property(
+            "billing_entity_ids",
+            th.ArrayType(th.StringType),
+            required=False,
+            default=[],
+            description="List of billing entity IDs to sync AR reports for.",
+        ),
+        th.Property(
             "start_date",
             th.DateTimeType,
             required=True,
@@ -79,6 +86,7 @@ class TapSunwave(Tap):
             streams.OpportunitiesStream(self),
             streams.OpportunityTimelineStream(self),
             streams.CensusStream(self),
+            streams.BillingReportStream(self),
         ]
 
 
