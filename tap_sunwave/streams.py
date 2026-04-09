@@ -31,15 +31,15 @@ SUNWAVE_DATETIME_FORMAT = "%m/%d/%Y %I:%M:%S %p"
 
 
 def _normalize_sunwave_datetime(value: str | None) -> str | None:
-    """Convert Sunwave datetime format to ISO 8601."""
+    """Convert Sunwave datetime format to ISO 8601.
+
+    Returns:
+        A normalized date-time string, or null if it can't be parsed.
+    """
     if not value:
         return value
     try:
-        return (
-            datetime.strptime(value, SUNWAVE_DATETIME_FORMAT)
-            .replace(tzinfo=timezone.utc)
-            .isoformat()
-        )
+        return datetime.strptime(value, SUNWAVE_DATETIME_FORMAT).replace(tzinfo=timezone.utc).isoformat()
     except ValueError:
         return value
 
@@ -146,3 +146,42 @@ class CensusStream(SunwaveStream):
             start=start_date.strftime("%Y-%m-%d"),
             end=end_date.strftime("%Y-%m-%d"),
         )
+
+
+class BillingReportStream(SunwaveStream):
+    """Stream for retrieving billing AR reports from Sunwave."""
+
+    name = "billing_report"
+    path = "/api/billing/arreport/from/{from}/until/{until}/billingentityid/{billingId}"
+    primary_keys = ("billing_entity_id",)
+    replication_key = None
+
+    @property
+    @override
+    def partitions(self) -> list[dict] | None:
+        return [{"billing_entity_id": eid} for eid in self.config["billing_entity_ids"]]
+
+    @override
+    def get_url(self, context: Context | None) -> str:
+        assert context is not None  # noqa: S101
+        start_date = datetime.fromisoformat(self.config["start_date"])
+        end_date = datetime.now(tz=timezone.utc)
+        path = self.path.format(**{
+            "from": start_date.strftime("%Y-%m-%d"),
+            "until": end_date.strftime("%Y-%m-%d"),
+            "billingId": context["billing_entity_id"],
+        })
+        return f"{self.url_base}{path}"
+
+    @override
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        assert context is not None  # noqa: S101
+        row["billing_entity_id"] = context["billing_entity_id"]
+        return row
+
+    @override
+    def parse_response(self, response: requests.Response) -> Iterable[dict]:
+        data = response.json()
+        headers = data.get("table_header", [])
+        for row in data.get("table_rows", []):
+            yield dict(zip(headers, row, strict=False))

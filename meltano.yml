@@ -1,4 +1,4 @@
-requires_meltano: ">=4.0"
+requires_meltano: '>=4.0'
 send_anonymous_usage_stats: true
 project_id: tap-sunwave
 default_environment: test
@@ -22,6 +22,8 @@ plugins:
     - name: client_secret
       sensitive: true
     - name: clinic_id
+    - name: billing_entity_ids
+      kind: array
     select:
     - "*.*"
     - "!opportunity_timeline.*"  # Seriously rate-limited :(
@@ -38,3 +40,6 @@ plugins:
       user: postgres
       password: postgres
       database: postgres
+  - name: target-duckdb
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/target-duckdb.git

@@ -20,7 +20,8 @@ else:
     from typing_extensions import override
 
 if TYPE_CHECKING:
-    from singer_sdk.helpers.types import Auth, Context
+    from singer_sdk.authenticators import APIAuthenticatorBase
+    from singer_sdk.helpers.types import Context
 
 
 SCHEMAS_DIR = SchemaDirectory(schemas)
@@ -40,9 +41,9 @@ class SunwaveStream(RESTStream):
         # Then call the parent's method with our newly authenticated request
         return super()._request(reauthed_request, context)
 
-    @override
     @cached_property
-    def authenticator(self) -> Auth:
+    @override
+    def authenticator(self) -> APIAuthenticatorBase:
         return SunwaveAuthenticator(
             user_id=self.config["user_id"],
             client_id=self.config["client_id"],
