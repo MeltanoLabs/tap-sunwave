@@ -81,17 +81,17 @@ class OpportunitiesStream(SunwaveStream):
     """Stream for retrieving data about opportunities from Sunwave."""
 
     name = "opportunity"
+    path = "/api/opportunities/createdon/from/{start}/until/{end}"
     primary_keys = ("opportunity_id",)
     replication_key = "created_on"
 
-    @property
-    def path(self) -> str:
+    @override
+    def get_url(self, context: Context | None) -> str:
         bookmark = self.get_starting_replication_key_value(None)
         start_date = datetime.fromisoformat(bookmark or self.config["start_date"])
         end_date = datetime.now(tz=timezone.utc)
-        return (
-            f"/api/opportunities/createdon/from/{start_date.strftime('%Y-%m-%d')}/until/{end_date.strftime('%Y-%m-%d')}"
-        )
+        path = self.path.format(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"))
+        return f"{self.url_base}{path}"
 
     @override
     def post_process(self, row: dict, context: Context | None = None) -> dict | None:
@@ -129,6 +129,7 @@ class CensusStream(SunwaveStream):
     """
 
     name = "census"
+    path = "/api/census/{census_status}/from/{start}/until/{end}"
     partitions: ClassVar[list[dict]] = [
         {"census_status": "active"},
         {"census_status": "admitted"},
@@ -137,15 +138,18 @@ class CensusStream(SunwaveStream):
     primary_keys = ("Account Id",)
     replication_key = None
 
-    @property
-    def path(self) -> str:
+    @override
+    def get_url(self, context: Context | None) -> str:
+        assert context is not None  # noqa: S101
+
         start_date = datetime.fromisoformat(self.config["start_date"])
         end_date = datetime.now(tz=timezone.utc)
-        return "/api/census/{census_status}/from/{start}/until/{end}".format(
-            census_status="{census_status}",
+        path = self.path.format(
+            census_status=context["census_status"],
             start=start_date.strftime("%Y-%m-%d"),
             end=end_date.strftime("%Y-%m-%d"),
         )
+        return f"{self.url_base}{path}"
 
 
 class BillingReportStream(SunwaveStream):
@@ -166,11 +170,13 @@ class BillingReportStream(SunwaveStream):
         assert context is not None  # noqa: S101
         start_date = datetime.fromisoformat(self.config["start_date"])
         end_date = datetime.now(tz=timezone.utc)
-        path = self.path.format(**{
-            "from": start_date.strftime("%Y-%m-%d"),
-            "until": end_date.strftime("%Y-%m-%d"),
-            "billingId": context["billing_entity_id"],
-        })
+        path = self.path.format(
+            **{
+                "from": start_date.strftime("%Y-%m-%d"),
+                "until": end_date.strftime("%Y-%m-%d"),
+                "billingId": context["billing_entity_id"],
+            }
+        )
         return f"{self.url_base}{path}"
 
     @override

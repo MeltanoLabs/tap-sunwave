@@ -35,7 +35,11 @@ class SunwaveStream(RESTStream):
 
     @override
     def _request(self, prepared_request: requests.PreparedRequest, context: Context | None) -> requests.Response:
-        """Auth wasn't getting ran for every retried request, so we need to do it here"""
+        """Auth wasn't getting ran for every retried request, so we need to do it here
+
+        Returns:
+            A response object.
+        """
         # Manually run authenticator before sending the request
         reauthed_request = self.authenticator.authenticate_request(prepared_request)
         # Then call the parent's method with our newly authenticated request
@@ -54,9 +58,9 @@ class SunwaveStream(RESTStream):
     @override
     def validate_response(self, response: requests.Response) -> None:
         """Validate HTTP response.
+
         Raises:
             FatalAPIError: If the request is not retriable.
-            RetriableAPIError: If the request is retriable.
         """
         super().validate_response(response)
 
