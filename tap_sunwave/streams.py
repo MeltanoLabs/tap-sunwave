@@ -59,6 +59,10 @@ class UserStream(SunwaveStream):
 class ReferralStream(SunwaveStream):
     name = "referral"
     path = "/api/referrals/status/{status}"
+    partitions: ClassVar[list[dict]] = [
+        {"status": "active"},
+        {"status": "inactive"},
+    ]
     primary_keys = ("id",)
     replication_key = None
 
