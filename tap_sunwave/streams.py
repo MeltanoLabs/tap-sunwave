@@ -161,7 +161,6 @@ class BillingReportStream(SunwaveStream):
 
     name = "billing_report"
     path = "/api/billing/arreport/from/{from}/until/{until}/billingentityid/{billingId}"
-    primary_keys = ("billing_entity_id",)
     replication_key = None
 
     @property
