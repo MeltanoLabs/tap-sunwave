@@ -87,6 +87,7 @@ class TapSunwave(Tap):
             streams.OpportunityTimelineStream(self),
             streams.CensusStream(self),
             streams.BillingReportStream(self),
+            streams.ReferralStream(self),
         ]
 
 
