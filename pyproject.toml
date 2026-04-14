@@ -38,7 +38,7 @@ dev = [
     { include-group = "testing" },
 ]
 testing = [
-    "pytest>=9",
+    "pytest>=9.0.3",
     "singer-sdk[testing]",
 ]
 typing = [
