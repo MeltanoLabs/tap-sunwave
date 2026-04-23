@@ -34,7 +34,7 @@ tap-sunwave = "tap_sunwave.tap:TapSunwave.cli"
 
 [dependency-groups]
 dev = [
-    "ruff~=0.15.10",
+    "ruff~=0.15.11",
     { include-group = "testing" },
 ]
 testing = [
@@ -43,8 +43,8 @@ testing = [
 ]
 typing = [
     "backports-datetime-fromisoformat>=2.0.3",
-    "mypy>=1.20.1",
-    "ty>=0.0.31",
+    "mypy>=1.20.2",
+    "ty>=0.0.32",
     "types-requests>=2.33.0.20260408",
 ]
 
