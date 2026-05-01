@@ -139,7 +139,7 @@ class CensusStream(SunwaveStream):
         {"census_status": "admitted"},
         {"census_status": "discharged"},
     ]
-    primary_keys = ("Account Id",)
+    primary_keys = ("Admission Id",)
     replication_key = None
 
     @override
