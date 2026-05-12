@@ -191,6 +191,7 @@
         "null"
       ]
     },
+    "excused_": { "type": ["string", "null"] },
     "first contact": {
       "type": [
         "string",
@@ -239,6 +240,13 @@
         "null"
       ]
     },
+    "guardian address": { "type": ["string", "null"] },
+    "guardian city": { "type": ["string", "null"] },
+    "guardian email": { "type": ["string", "null"] },
+    "guardian name": { "type": ["string", "null"] },
+    "guardian phone": { "type": ["string", "null"] },
+    "guardian state": { "type": ["string", "null"] },
+    "guardian zip": { "type": ["string", "null"] },
     "has_been_scheduled": {
       "type": [
         "string",
@@ -359,6 +367,7 @@
         "null"
       ]
     },
+    "patient preferred name": { "type": ["string", "null"] },
     "patient_address": {
       "type": [
         "string",
@@ -437,6 +446,7 @@
         "null"
       ]
     },
+    "referral source city": { "type": ["string", "null"] },
     "referral source contact": {
       "type": [
         "string",
@@ -449,6 +459,9 @@
         "null"
       ]
     },
+    "referral source stage": { "type": ["string", "null"] },
+    "referral source state": { "type": ["string", "null"] },
+    "referral source zipcode": { "type": ["string", "null"] },
     "referral type": {
       "type": [
         "string",
@@ -545,6 +558,8 @@
         "null"
       ]
     },
+    "sor document_": { "type": ["string", "null"] },
+    "sor_": { "type": ["string", "null"] },
     "stage": {
       "type": [
         "string",
@@ -617,6 +632,7 @@
         "null"
       ]
     },
+    "target_program": { "type": ["string", "null"] },
     "target_service_facility": {
       "type": [
         "string",
