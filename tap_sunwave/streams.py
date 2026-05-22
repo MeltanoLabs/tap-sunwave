@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import TYPE_CHECKING, ClassVar
 
 from tap_sunwave.client import SunwaveStream
@@ -194,3 +194,34 @@ class BillingReportStream(SunwaveStream):
         headers = data.get("table_header", [])
         for row in data.get("table_rows", []):
             yield dict(zip(headers, row, strict=False))
+
+
+class URReportStream(SunwaveStream):
+    """Stream for retrieving UR reports from Sunwave."""
+
+    name = "ur_report"
+    path = "/api/reports/ur_report/from/{from}/until/{until}"
+    replication_key = None
+    primary_keys = ("id",)
+
+    @property
+    @override
+    def partitions(self) -> list[dict] | None:
+        start = datetime.fromisoformat(self.config["start_date"]).replace(tzinfo=timezone.utc)
+        end = datetime.now(tz=timezone.utc)
+        chunks = []
+        chunk_start = start
+        while chunk_start < end:
+            chunk_end = min(chunk_start + timedelta(days=30), end)
+            chunks.append({
+                "from": chunk_start.strftime("%Y-%m-%d"),
+                "until": chunk_end.strftime("%Y-%m-%d"),
+            })
+            chunk_start = chunk_end
+        return chunks
+
+    @override
+    def get_url(self, context: Context | None) -> str:
+        assert context is not None  # noqa: S101
+        path = self.path.format(**{"from": context["from"], "until": context["until"]})
+        return f"{self.url_base}{path}"
