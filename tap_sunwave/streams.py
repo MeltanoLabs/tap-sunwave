@@ -202,7 +202,6 @@ class URReportStream(SunwaveStream):
     name = "ur_report"
     path = "/api/reports/ur_report/from/{from}/until/{until}"
     replication_key = None
-    primary_keys = ("id",)
 
     @property
     @override
