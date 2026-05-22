@@ -207,7 +207,7 @@ class URReportStream(SunwaveStream):
     @override
     def post_process(self, row: dict, context: Context | None = None) -> dict | None:
         if not row.get("id"):
-            row["id"] = ""
+            row["id"] = f"no_id_{row.get('admission_id', '')}_{row.get('patient_id', '')}"
         return row
 
     @property
