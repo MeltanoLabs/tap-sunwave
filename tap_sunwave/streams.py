@@ -202,6 +202,13 @@ class URReportStream(SunwaveStream):
     name = "ur_report"
     path = "/api/reports/ur_report/from/{from}/until/{until}"
     replication_key = None
+    primary_keys = ("id", "admission_id", "patient_id")
+
+    @override
+    def post_process(self, row: dict, context: Context | None = None) -> dict | None:
+        if not row.get("id"):
+            row["id"] = ""
+        return row
 
     @property
     @override
