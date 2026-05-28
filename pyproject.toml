@@ -21,7 +21,7 @@ classifiers = [
 ]
 dependencies = [
     'backports-datetime-fromisoformat>=2.0.1; python_version<"3.11"',
-    "singer-sdk~=0.54.2",
+    "singer-sdk~=0.54.3",
     "requests~=2.34.2",
     "typing-extensions>=4.15.0 ; python_full_version < '3.12'",
 ]
