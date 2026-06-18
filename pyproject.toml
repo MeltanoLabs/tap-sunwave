@@ -34,17 +34,17 @@ tap-sunwave = "tap_sunwave.tap:TapSunwave.cli"
 
 [dependency-groups]
 dev = [
-    "ruff~=0.15.16",
+    "ruff~=0.15.17",
     { include-group = "testing" },
 ]
 testing = [
-    "pytest>=9.0.3",
+    "pytest>=9.1.0",
     "singer-sdk[testing]",
 ]
 typing = [
     "backports-datetime-fromisoformat>=2.0.3",
     "mypy>=2.1.0",
-    "ty>=0.0.48",
+    "ty>=0.0.50",
     "types-requests>=2.33.0.20260518",
 ]
 
