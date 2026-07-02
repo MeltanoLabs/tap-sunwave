@@ -1,6 +1,7 @@
 {
   "type": "object",
   "properties": {
+    "Admit Type": { "type": ["string", "null"] },
     "Account Id": {
       "type": ["string", "null"],
       "description": "Account ID",
@@ -11,6 +12,10 @@
       "description": "Account Legacy Id",
       "example": "44445"
     },
+    "Bd Rep": { "type": ["string", "null"] },
+    "Bed Name": { "type": ["string", "null"] },
+    "Building Name": { "type": ["string", "null"] },
+    "Business Development Rep ": { "type": ["string", "null"] },
     "Admission Date": {
       "type": ["string", "null"],
       "description": "Date of Admission",
@@ -86,6 +91,7 @@
       "description": "Case Manager",
       "example": "James Smith"
     },
+    "Collector": { "type": ["string", "null"] },
     "Communication Type": {
       "type": ["string", "null"],
       "description": "Type of Communication",
@@ -121,6 +127,12 @@
       "description": "The official date when the patient was confirmed deceased",
       "example": "2025-10-04"
     },
+    "Discharge Time": { "type": ["string", "null"] },
+    "Do Not Readmit": { "type": ["string", "null"] },
+    "Do Not Readmit Before Consult": { "type": ["string", "null"] },
+    "Do Not Readmit Before Consult Comment": { "type": ["string", "null"] },
+    "Do Not Readmit Comment": { "type": ["string", "null"] },
+    "Drug Of Choice ": { "type": ["string", "null"] },
     "Diagnosis": {
       "type": ["string", "null"],
       "description": "Diagnosis",
@@ -156,6 +168,8 @@
       "description": "End On",
       "example": "2023-09-28"
     },
+    "Ethnicity": { "type": ["string", "null"] },
+    "Excused ": { "type": ["string", "null"] },
     "Financial Class Name": {
       "type": ["string", "null"],
       "description": "Financial Class Name",
@@ -166,6 +180,13 @@
       "description": "First Contact",
       "example": "Joe"
     },
+    "Guardian Address": { "type": ["string", "null"] },
+    "Guardian City": { "type": ["string", "null"] },
+    "Guardian Email": { "type": ["string", "null"] },
+    "Guardian Name": { "type": ["string", "null"] },
+    "Guardian Phone": { "type": ["string", "null"] },
+    "Guardian State": { "type": ["string", "null"] },
+    "Guardian Zip": { "type": ["string", "null"] },
     "High Risk": {
       "type": ["string", "null"],
       "description": "High risk",
@@ -181,6 +202,7 @@
       "description": "Name of Insurance",
       "example": "Allied"
     },
+    "Legal Status": { "type": ["string", "null"] },
     "Last Level Of Care": {
       "type": ["string", "null"],
       "description": "Last Level of Care",
@@ -267,6 +289,7 @@
         "description": "Object for level of care specifics"
       }
     },
+    "Nickname ": { "type": ["string", "null"] },
     "Marital Status": {
       "type": ["string", "null"],
       "description": "Martial Status",
@@ -297,6 +320,12 @@
       "description": "Opportunity ID",
       "example": "637"
     },
+    "Patient Preferred Name": { "type": ["string", "null"] },
+    "Preadmission Notes ": { "type": ["string", "null"] },
+    "Primary Counselor": { "type": ["string", "null"] },
+    "Primary Insurance Phone Number": { "type": ["string", "null"] },
+    "Primary Subscriber Phone Number": { "type": ["string", "null"] },
+    "Provider": { "type": ["string", "null"] },
     "Patient Address1": {
       "type": ["string", "null"],
       "description": "Address of Patient",
@@ -392,6 +421,9 @@
       "description": "Program",
       "example": "Rehabilitation"
     },
+    "Referral Source": { "type": ["string", "null"] },
+    "Religion ": { "type": ["string", "null"] },
+    "Room Name": { "type": ["string", "null"] },
     "Race": {
       "type": ["string", "null"],
       "description": "Race",
@@ -427,6 +459,9 @@
       "description": "Referral Source ID",
       "example": "219"
     },
+    "Secondary Insurance Phone Number": { "type": ["string", "null"] },
+    "Secondary Subscriber Phone Number": { "type": ["string", "null"] },
+    "Secondary Term Date ": { "type": ["string", "null"] },
     "Secondary Insurance Group Number": {
       "type": ["string", "null"],
       "description": "Secondary Insurance Group Number",
@@ -447,6 +482,8 @@
       "description": "Secondary Submit Name",
       "example": "James"
     },
+    "Sor ": { "type": ["string", "null"] },
+    "Sor Document ": { "type": ["string", "null"] },
     "Service Facility Id": {
       "type": ["string", "null"],
       "description": "Service Facility ID",
@@ -462,6 +499,8 @@
       "description": "Submit Name",
       "example": "Ryan"
     },
+    "Term Date ": { "type": ["string", "null"] },
+    "Transfer From": { "type": ["string", "null"] },
     "Target Service Facility": {
       "type": ["string", "null"],
       "description": "Target Service Facility",
@@ -476,7 +515,8 @@
       "type": ["string", "null"],
       "description": "Transferred",
       "example": "true"
-    }
+    },
+    "census_status": { "type": ["string", "null"] }
   },
   "description": "Census Response Object"
 }
